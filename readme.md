@@ -1,5 +1,5 @@
 Integrantes del grupo:
 Albornoz, Cristian 
-Barreiro Ruiz, Fernando Ruben
+Bareiro Ruiz, Fernando Ruben
 Monzon Eberle, Jose Maria
 Picasso, Nestor

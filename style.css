@@ -30,17 +30,7 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration:double underline;
-}
-
-main {
-  padding: 2rem;
-}
-
-section {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background: white;
+  text-decoration: double underline;
 }
 
 footer {

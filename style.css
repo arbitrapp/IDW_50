@@ -12,14 +12,24 @@ header {
   padding: 1rem;
 }
 
-header h1 {
-  margin: 0;
+/* Contenedor del header*/
+.header-container {
+  display: flex;    
+  justify-content: space-between;  
+  align-items: center;          
+}
+
+/* Ajuste de logo */
+.logo {
+  height: 100px;   
+  width: auto;
 }
 
 nav ul {
   list-style: none;
   padding: 0;
-  display: flex;
+  margin: 0;
+  display: inline-flex;
   gap: 1rem;
 }
 
@@ -42,6 +52,24 @@ section {
   padding: 1rem;
   background: white;
 }
+
+/*Imagenes de la Obra Social*/
+.img_Osocial {
+  display: flex;          
+  flex-wrap: wrap;        
+  gap: 20px;              
+  justify-content: center; 
+}
+
+.img_Osocial img {
+  width: 150px;
+  height: auto;
+  border: 2px solid #ccc;
+  padding: 10px;
+  background: white;
+}
+
+
 
 footer {
   background: #023e8a;

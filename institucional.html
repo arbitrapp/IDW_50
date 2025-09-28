@@ -4,233 +4,202 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Institucional - Centro Médico Galeano</title>
-    <link rel="stylesheet" href="style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <header class="m-o p-0">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <img src="assets/logo.png" class="navbar-brand" height="100px" />
+  <body class="bg-light">
+    <!-- NAVBAR -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="assets/logo.png" height="60" alt="Logo" class="me-2" />
+          </a>
           <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            data-bs-target="#navbarNav"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div
             class="collapse navbar-collapse justify-content-end"
-            id="navbarNavAltMarkup"
+            id="navbarNav"
           >
-            <div class="navbar-nav text-center">
-              <a
-                class="nav-link active .text-secondary-emphasis"
-                aria-current="page"
-                href="index.html"
-                >Inicio</a
-              >
-              <a class="nav-link" href="institucional.html">Institucional</a>
-              <a class="nav-link" href="contacto.html">Contacto</a>
-            </div>
+            <ul class="navbar-nav text-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="institucional.html"
+                  >Institucional</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contacto.html">Contacto</a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
     </header>
-    <main>
-      <section>
-        <h2>Acerca de Nosotros</h2>
-        <p>
-          El <strong>Centro Médico Galeano</strong> nace con la misión de
-          brindar atención integral a la salud de las personas, con un fuerte
-          compromiso humano y comunitario. Somos una institución pensada para
-          acompañar a cada paciente y su familia en todo el proceso de cuidado,
-          poniendo a disposición tecnología actualizada, profesionales altamente
-          capacitados y, sobre todo, un trato cercano y humano.
+
+    <!-- HERO -->
+    <section class="bg-primary text-white text-center py-5">
+      <div class="container">
+        <h1 class="fw-bold">Centro Médico Galeano</h1>
+        <p class="lead">
+          Comprometidos con tu salud, tu bienestar y tu comunidad.
         </p>
-        <p>
-          Nuestro objetivo es ser un espacio de confianza, donde cada persona
-          encuentre no solo asistencia médica de calidad, sino también escucha,
-          contención y acompañamiento.
-        </p>
+      </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <main class="container my-5">
+      <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+          <img
+            src="https://img.freepik.com/free-photo/medical-team-meeting_53876-12041.jpg"
+            class="img-fluid rounded shadow"
+            alt="Equipo médico"
+          />
+        </div>
+        <div class="col-md-6">
+          <h2 class="text-primary">Acerca de Nosotros</h2>
+          <p>
+            El <strong>Centro Médico Galeano</strong> nace con la misión de
+            brindar atención integral a la salud de las personas, con un fuerte
+            compromiso humano y comunitario.
+          </p>
+          <p>
+            Nuestro objetivo es ser un espacio de confianza, donde cada persona
+            encuentre no solo asistencia médica de calidad, sino también
+            escucha, contención y acompañamiento.
+          </p>
+        </div>
+      </div>
+
+      <!-- MISION & VISION -->
+      <div class="row g-4 mb-5">
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title text-primary">
+                <i class="bi bi-bullseye"></i> Misión
+              </h3>
+              <p>
+                Trabajar día a día para ofrecer atención médica de alta calidad,
+                orientada al bienestar integral de las personas.
+              </p>
+              <p>
+                Creemos que la salud no solo se trata de curar enfermedades,
+                sino también de educar, acompañar y brindar herramientas para
+                mejorar la calidad de vida.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title text-primary">
+                <i class="bi bi-eye"></i> Visión
+              </h3>
+              <p>
+                Ser un centro de salud referente en la región y el país,
+                reconocido por la excelencia de sus prácticas médicas y la
+                calidez humana en la atención.
+              </p>
+              <p>
+                Aspiramos a combinar innovación científica con un profundo
+                respeto por la dignidad de cada paciente.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBJETIVOS -->
+      <section class="mb-5">
+        <h2 class="text-primary mb-3">Objetivos</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+          <div class="col">
+            <div class="p-3 bg-white rounded shadow-sm">
+              <i class="bi bi-heart-pulse-fill text-danger"></i>
+              Brindar atención médica integral y especializada.
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-3 bg-white rounded shadow-sm">
+              <i class="bi bi-people-fill text-success"></i>
+              Acompañar a pacientes y familias con empatía.
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-3 bg-white rounded shadow-sm">
+              <i class="bi bi-shield-check text-primary"></i>
+              Desarrollar programas de prevención y promoción de la salud.
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-3 bg-white rounded shadow-sm">
+              <i class="bi bi-mortarboard text-warning"></i>
+              Formar y capacitar profesionales.
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section>
-        <h2>Visión</h2>
-        <p>
-          Ser un centro de salud referente en la región y el país, reconocido
-          por la excelencia de sus prácticas médicas, la calidez humana en la
-          atención y la generación de proyectos que integren asistencia,
-          investigación y docencia. Aspiramos a consolidarnos como una
-          institución que combine innovación científica con un profundo respeto
-          por la dignidad de cada paciente.
-        </p>
-      </section>
-
-      <section>
-        <h2>Misión</h2>
-        <p>
-          El <strong>Centro Médico Galeano</strong> trabaja día a día para
-          ofrecer atención médica de alta calidad, orientada al bienestar
-          integral de las personas. Nuestro compromiso abarca la asistencia en
-          diversas especialidades de la salud, la formación de profesionales, y
-          el desarrollo de proyectos que fortalezcan la prevención y el cuidado
-          comunitario.
-        </p>
-        <p>
-          Creemos que la salud no solo se trata de curar enfermedades, sino
-          también de educar, acompañar y brindar herramientas para mejorar la
-          calidad de vida.
-        </p>
-      </section>
-
-      <section>
-        <h2>Objetivos</h2>
-        <ul>
-          <li>
-            Brindar atención médica integral y especializada con calidad y
-            calidez.
-          </li>
-          <li>
-            Acompañar a pacientes y familias con un enfoque humano y empático.
-          </li>
-          <li>Desarrollar programas de prevención y promoción de la salud.</li>
-          <li>
-            Formar y capacitar profesionales de distintas áreas de la medicina.
-          </li>
-          <li>
-            Participar en investigaciones que aporten a la mejora continua de la
-            práctica médica.
-          </li>
-          <li>
-            Establecer redes de colaboración con instituciones públicas y
-            privadas, nacionales e internacionales.
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Valores</h2>
-        <ul>
-          <li>
-            <strong>Humanidad:</strong> Ponemos a las personas en el centro de
-            nuestra labor, con un trato digno y cercano.
-          </li>
-          <li>
-            <strong>Honestidad:</strong> Actuamos con transparencia y
-            coherencia.
-          </li>
-          <li>
-            <strong>Confianza:</strong> Construimos vínculos sólidos basados en
-            ética y satisfacción.
-          </li>
-          <li>
-            <strong>Equidad:</strong> Garantizamos un trato justo e igualitario.
-          </li>
-          <li>
-            <strong>Respeto:</strong> Cuidamos la dignidad, intimidad y
-            creencias de cada persona.
-          </li>
-          <li>
-            <strong>Responsabilidad:</strong> Respondemos con compromiso y
-            profesionalismo.
-          </li>
-          <li>
-            <strong>Cooperación:</strong> Fomentamos el trabajo en equipo entre
-            profesionales, pacientes y familias.
-          </li>
-          <li>
-            <strong>Innovación:</strong> Incorporamos avances médicos y
-            tecnológicos para mejorar la atención.
-          </li>
-          <li>
-            <strong>Compromiso:</strong> Nos involucramos profundamente con cada
-            paciente.
-          </li>
-          <li>
-            <strong>Cordialidad:</strong> Promovemos un trato amable, cercano y
-            cálido.
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Principios</h2>
-        <ul>
-          <li>Actuar siempre con ética, transparencia y respeto.</li>
-          <li>
-            Priorizar las necesidades de la comunidad en nuestras decisiones.
-          </li>
-          <li>
-            Garantizar la confidencialidad y privacidad de la información
-            médica.
-          </li>
-          <li>
-            Ofrecer atención integral en lo físico, lo emocional y lo social.
-          </li>
-          <li>Promover la comunicación clara y el diálogo abierto.</li>
-          <li>Apostar a la capacitación continua de nuestro personal.</li>
-          <li>Mantener instalaciones y equipos en condiciones óptimas.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Compromiso con Nuestros Pacientes</h2>
-        <ul>
-          <li>
-            <strong>Atención sin discriminación:</strong> Todos son bienvenidos
-            y atendidos con igualdad.
-          </li>
-          <li>
-            <strong>Autonomía:</strong> Respetamos la participación de cada
-            paciente en las decisiones sobre su salud.
-          </li>
-          <li>
-            <strong>Confidencialidad:</strong> Protegemos la privacidad de la
-            información personal y clínica.
-          </li>
-          <li>
-            <strong>Respeto a la intimidad:</strong> Garantizamos un entorno
-            seguro y considerado.
-          </li>
-          <li>
-            <strong>Información clara y veraz:</strong> Comunicamos con un
-            lenguaje sencillo y comprensible.
-          </li>
-          <li>
-            <strong>Educación para la salud:</strong> Orientamos a pacientes y
-            familias en hábitos de cuidado y prevención.
-          </li>
-          <li>
-            <strong
-              >Respeto a la dignidad en todas las etapas de la vida:</strong
-            >
-            Incluyendo el derecho a cuidados paliativos y a morir con dignidad.
-          </li>
-          <li>
-            <strong>Protección de los más vulnerables:</strong> Niños, adultos
-            mayores y personas en situación de fragilidad reciben especial
-            cuidado.
-          </li>
-        </ul>
+      <!-- VALORES -->
+      <section class="mb-5">
+        <h2 class="text-primary mb-3">Valores</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-person-hearts display-5 text-danger"></i>
+                <h5 class="mt-3">Humanidad</h5>
+                <p class="small">Ponemos a las personas en el centro.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-hand-thumbs-up-fill display-5 text-primary"></i>
+                <h5 class="mt-3">Honestidad</h5>
+                <p class="small">Actuamos con transparencia y coherencia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-people-fill display-5 text-success"></i>
+                <h5 class="mt-3">Confianza</h5>
+                <p class="small">
+                  Construimos vínculos sólidos basados en ética.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
-    <footer>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
       &copy; 2025 Centro Médico Galeano - Todos los derechos reservados.
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -51,18 +51,20 @@ nav a {
 nav a:hover {
   text-decoration: double underline;
 }
+/*
 section {
   margin-bottom: 2rem;
   padding: 1rem;
   background: white;
-}
-/* Estilo general */
+}*/
+
+/* Estilo general 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #f5f7fa;
   color: #333;
-}
+}*/
 
 header {
   background: #0077b6;
@@ -77,7 +79,7 @@ header {
   align-items: center;
 }
 
-/*Imagenes de la Obra Social*/
+/*Imagenes de la Obra Social
 .img_Osocial {
   display: flex;
   flex-wrap: wrap;
@@ -91,7 +93,7 @@ header {
   border: 2px solid #ccc;
   padding: 10px;
   background: white;
-}
+}*/
 
 footer {
   background: #023e8a;

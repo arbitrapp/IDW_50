@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio - Centro Médico Galeno</title>
-    <link rel="stylesheet" href="style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,6 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    
   </head>
   <body>
     <header class="bg-primary text-light m-0 p-0">
@@ -37,6 +37,10 @@
               <a class="nav-link active text-secondary-emphasis fw-bold" aria-current="page" href="index.html">Inicio</a>
               <a class="nav-link" href="institucional.html">Institucional</a>
               <a class="nav-link" href="contacto.html">Contacto</a>
+              <!-- Enlace al admin -->
+              <a class="nav-link text-warning" href="login.html">
+                <i class="bi bi-shield-lock me-1"></i>Admin
+              </a>
             </div>
           </div>
         </div>
@@ -93,231 +97,41 @@
             </p>
         </div>
         <div id="obrasSocialesCarousel" class="carousel slide" data-bs-ride="false">
-          <div class="carousel-inner">
-            <!-- Grupo 1 -->
-            <div class="carousel-item active">
-              <div class="row g-4 justify-content-center">
-                <div class="col-12 col-md-3">
-                  <a href="https://construirsalud.com.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_conSalud.png" class="img-fluid d-block mx-auto" alt="CONSTRUIR SALUD">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="https://www.galeno.com.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_galeno.png" class="img-fluid d-block mx-auto" alt="GALENO">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="https://iosfa.gob.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_iosfa.png" class="img-fluid d-block mx-auto" alt="IOSFA">
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Grupo 2 -->
-            <div class="carousel-item">
-              <div class="row g-4 justify-content-center">
-                <div class="col-12 col-md-3">
-                  <a href="https://www.osde.com.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_osde.png" class="img-fluid d-block mx-auto" alt="OSDE">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="https://www.osecac.org.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_osecac.png" class="img-fluid d-block mx-auto" alt="OSECAC">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="https://osef.gob.ar/#/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_osef.png" class="img-fluid d-block mx-auto" alt="OSEF">
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Grupo 3 -->
-            <div class="carousel-item">
-              <div class="row g-4 justify-content-center">
-                <div class="col-12 col-md-3">
-                  <a href="https://osim.com.ar/osim_2016/index.php" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_osim.png" class="img-fluid d-block mx-auto" alt="OSIM">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="http://ospesa.com.ar/#!/-inicio/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_ospesa.png" class="img-fluid d-block mx-auto" alt="OSPESA">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="https://www.ospia.org.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_ospia.png" class="img-fluid d-block mx-auto" alt="OSPIA">
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Grupo 4 -->
-            <div class="carousel-item">
-              <div class="row g-4 justify-content-center">
-                <div class="col-12 col-md-3">
-                  <a href="https://www.ospis.com.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_ospis.png" class="img-fluid d-block mx-auto" alt="OSPIS">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="https://www.ospit.org.ar/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_ospit.png" class="img-fluid d-block mx-auto" alt="OSPIT">
-                    </div>
-                  </a>
-                </div>
-                <div class="col-12 col-md-3">
-                  <a href="https://www.swissmedical.com.ar/prepagaclientes/" target="_blank" class="d-block h-100">
-                    <div class="border rounded-3 bg-white p-3 shadow h-100">
-                      <img src="assets/img_os/os_sm.png" class="img-fluid d-block mx-auto" alt="SWISS MEDICAL">
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-
+          <div class="carousel-inner" id="obras-sociales-container">
+            <!-- Las obras sociales se cargarán dinámicamente aquí -->
           </div>
 
           <!-- Flechas -->
-              <button class="carousel-control-prev position-absolute top-50 start-0 translate-middle-y " type="button"
-                data-bs-target="#obrasSocialesCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon bg-primary rounded-circle p-4" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-              </button>
-              <button class="carousel-control-next position-absolute top-50 end-0 translate-middle-y " type="button"
-                data-bs-target="#obrasSocialesCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon bg-primary rounded-circle p-4" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-              </button>
+          <button class="carousel-control-prev position-absolute top-50 start-0 translate-middle-y" type="button"
+            data-bs-target="#obrasSocialesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next position-absolute top-50 end-0 translate-middle-y" type="button"
+            data-bs-target="#obrasSocialesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
         </div>
       </section>
       <!-- Fin Seccion Obra Social  -->
       <!-- Inicio Seccion Profesionales -->
-      <section class="profesionales">
-
+      <section class="profesionales container my-5">
         <div class="text-center mb-4">
           <h2 class="text-center mb-3 display-4 fw-bold text-primary" id="NuestrosProfesionales">Nuestros Profesionales</h2>
             <p class="text-center fs-5 text-dark fw-medium bg-light bg-gradient bg-opacity-25 px-4 py-3 rounded-3 shadow-sm">
               En nuestro equipo de profesionales altamente capacitados encontrarás el compromiso que tu bienestar necesita.
             </p>
         </div>
-        <div class="container text-center">
-          <div class="row gy-3 mt-3">
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/vgt.jpg" class="card-img-top" alt="Valeria Guzmán Torres">
-                <div class="card-body">
-                  <h5 class="card-title">Dra. Valeria Guzmán Torres</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Oncóloga Integrativa y Medicina Personalizada.</p>
-                  <p class="card-text">Obras Sociales: Construir Salud, Galeno, IOSFA, OSDE.</p>
-                </div>
-              </div>
-            </div><!-- Dra. Valeria Guzmán Torres -->
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/maq.jpg" class="card-img-top" alt="Dr. Marcelo Álvarez Quintana">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Marcelo Álvarez Quintana</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Especialista en Medicina del Sueño y Trastornos Circadianos</p>
-                  <p class="card-text">Obras Sociales: OSECAC, OSEF, OSIM, OSPESA</p>
-                </div>
-              </div>
-            </div><!-- Dr. Marcelo Álvarez Quintana -->
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/crp.jpg" class="card-img-top" alt="Dra. Camila Rodríguez Pardo">
-                <div class="card-body">
-                  <h5 class="card-title">Dra. Camila Rodríguez Pardo</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Pediatra del Desarrollo y Neuroestimulación Infantil.</p>
-                  <p class="card-text">Obras Sociales: OSPIA, OSPIS, OSPIT, Swiss Medical.</p>
-                </div>
-              </div>
-            </div><!-- Dra. Camila Rodríguez Pardo -->
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/erf.jpg" class="card-img-top" alt="Dr. Esteban Ríos Ferreyra">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Esteban Ríos Ferreyra</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Cirujano de Columna y Terapias Regenerativas.</p>
-                  <p class="card-text">Obras Sociales: Construir Salud, Galeno, IOSFA, OSDE.</p>
-                </div>
-              </div>
-            </div><!-- Dr. Esteban Ríos Ferreyra -->
-          </div>
-          <div class="row gy-3 mt-3"> 
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/nfo.jpg" class="card-img-top" alt="Dra. Natalia Fernández Olmos">
-                <div class="card-body">
-                  <h5 class="card-title">Dra. Natalia Fernández Olmos</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Psiquiatra de Alta Complejidad y Trastornos del Humor</p>
-                  <p class="card-text">Obras Sociales: OSPIA, OSPIT, OSECAC, OSEF</p>
-                </div>
-              </div>
-            </div><!-- Dra. Natalia Fernández Olmos -->
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/jhd.jpg" class="card-img-top" alt="Dr. Julián Herrera Domínguez">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Julián Herrera Domínguez</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Infectólogo en Enfermedades Emergentes y Medicina Tropical.</p>
-                  <p class="card-text">Obras Sociales: OSPIA, OSEF, OSIM, OSPESA, Construir Salud.</p>
-                </div>
-              </div>
-            </div><!-- Dr. Julián Herrera Domínguez -->
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/smc.jpg" class="card-img-top" alt="Dr. Sergio Méndez Cabrera">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Sergio Méndez Cabrera</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Ginecóloga Especializada en Fertilidad y Endocrinología Reproductiva</p>
-                  <p class="card-text">Obras Sociales: OSPIA, OSPIT, OSEF, Construir Salud</p>
-                </div>
-              </div>
-            </div><!-- Dr. Sergio Méndez Cabrera -->
-            <div class="col-sm">
-              <div class="card h-100">
-                <img src="assets/img_professionals/tms.jpg" class="card-img-top" alt="Dr. Tomás Medina Soler">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Tomás Medina Soler</h5>
-                  <a href="#" class="btn btn-primary">Reservar turno</a>
-                  <p class="card-text">Especialidad: Cardiólogo Preventivo y Rehabilitación Deportiva.</p>
-                  <p class="card-text">Obras Sociales: OSECAC, OSEF, OSIM.</p>
-                </div>
-              </div>
-            </div><!-- Dr. Tomás Medina Soler -->
-          </div>
+        
+        <!-- Contenedor de profesionales con paginación -->
+        <div id="profesionales-container">
+          <!-- Los profesionales se cargarán dinámicamente aquí -->
+        </div>
+        
+        <!-- Paginación -->
+        <div class="d-flex justify-content-center mt-4" id="paginacion-container">
+          <!-- Los botones de paginación se cargarán dinámicamente aquí -->
         </div>
       </section>
       <!-- Fin Seccion Profesionales -->
@@ -431,5 +245,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

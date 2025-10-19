@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrar Obras Sociales - Centro Médico Galeno</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="bg-primary text-light mb-4">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center">
+            <img
+              src="assets/logo.png"
+              class="navbar-brand me-3"
+              height="50px"
+            />
+            <span class="navbar-brand mb-0 h1">Administración</span>
+          </div>
+          <div class="navbar-nav">
+            <a class="nav-link text-light" href="admin-medicos.html">Médicos</a>
+            <a class="nav-link active" href="admin-obras-sociales.html"
+              >Obras Sociales</a
+            >
+            <button class="nav-link text-light" onclick="cerrarSesion()">
+              Volver al Sitio
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0 text-primary">Gestión de Obras Sociales</h2>
+        <button class="btn btn-primary" onclick="abrirModalCrearOS()">
+          <i class="bi bi-plus-circle me-2"></i>Nueva Obra Social
+        </button>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th style="width: 80px">Logo</th>
+                  <th>Nombre</th>
+                  <th style="width: 100px">Estado</th>
+                  <th style="width: 150px">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-os-body">
+                <!-- Datos cargados dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal Obra Social -->
+    <div class="modal fade" id="modalObraSocial" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalOSTitulo">Nueva Obra Social</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="formObraSocial">
+              <input type="hidden" id="obraSocialId" />
+              <div class="mb-3">
+                <label for="nombreOS" class="form-label"
+                  >Nombre <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombreOS"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="logoOS" class="form-label">URL del Logo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="logoOS"
+                  placeholder="assets/img_os/ejemplo.png"
+                />
+              </div>
+              <div class="form-check form-switch mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="activoOS"
+                  checked
+                />
+                <label class="form-check-label" for="activoOS">Activa</label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="guardarObraSocial()"
+            >
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/obras-sociales-admin.js"></script>
+  </body>
+</html>

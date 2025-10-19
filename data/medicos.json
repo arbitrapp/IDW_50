@@ -1,0 +1,84 @@
+{
+  "medicos": [
+    {
+      "id": 1,
+      "nombre": "Dra. Valeria Guzmán Torres",
+      "especialidad": "Oncóloga Integrativa y Medicina Personalizada",
+      "imagen": "assets/img_professionals/vgt.jpg",
+      "obrasSociales": [1, 2, 3, 4],
+      "email": "vguzman@galeno.com",
+      "telefono": "+54 11 1234-5678",
+      "horarioAtencion": "Lunes a Viernes 8:00-16:00"
+    },
+    {
+      "id": 2,
+      "nombre": "Dr. Marcelo Álvarez Quintana",
+      "especialidad": "Especialista en Medicina del Sueño y Trastornos Circadianos",
+      "imagen": "assets/img_professionals/maq.jpg",
+      "obrasSociales": [5, 6, 7, 8],
+      "email": "malvarez@galeno.com",
+      "telefono": "+54 11 1234-5679",
+      "horarioAtencion": "Lunes a Jueves 9:00-17:00"
+    },
+    {
+      "id": 3,
+      "nombre": "Dra. Camila Rodríguez Pardo",
+      "especialidad": "Pediatra del Desarrollo y Neuroestimulación Infantil",
+      "imagen": "assets/img_professionals/crp.jpg",
+      "obrasSociales": [9, 10, 11, 12],
+      "email": "crodriguez@galeno.com",
+      "telefono": "+54 11 1234-5680",
+      "horarioAtencion": "Lunes a Viernes 8:00-15:00"
+    },
+    {
+      "id": 4,
+      "nombre": "Dr. Esteban Ríos Ferreyra",
+      "especialidad": "Cirujano de Columna y Terapias Regenerativas",
+      "imagen": "assets/img_professionals/erf.jpg",
+      "obrasSociales": [1, 2, 3, 4],
+      "email": "erios@galeno.com",
+      "telefono": "+54 11 1234-5681",
+      "horarioAtencion": "Martes a Viernes 10:00-18:00"
+    },
+    {
+      "id": 5,
+      "nombre": "Dra. Natalia Fernández Olmos",
+      "especialidad": "Psiquiatra de Alta Complejidad y Trastornos del Humor",
+      "imagen": "assets/img_professionals/nfo.jpg",
+      "obrasSociales": [9, 11, 5, 6],
+      "email": "nfernandez@galeno.com",
+      "telefono": "+54 11 1234-5682",
+      "horarioAtencion": "Lunes a Miércoles 9:00-16:00"
+    },
+    {
+      "id": 6,
+      "nombre": "Dr. Julián Herrera Domínguez",
+      "especialidad": "Infectólogo en Enfermedades Emergentes y Medicina Tropical",
+      "imagen": "assets/img_professionals/jhd.jpg",
+      "obrasSociales": [9, 6, 7, 8, 1],
+      "email": "jherrera@galeno.com",
+      "telefono": "+54 11 1234-5683",
+      "horarioAtencion": "Lunes a Viernes 8:00-17:00"
+    },
+    {
+      "id": 7,
+      "nombre": "Dr. Sergio Méndez Cabrera",
+      "especialidad": "Ginecólogo Especializado en Fertilidad y Endocrinología Reproductiva",
+      "imagen": "assets/img_professionals/smc.jpg",
+      "obrasSociales": [9, 11, 6, 1],
+      "email": "smendez@galeno.com",
+      "telefono": "+54 11 1234-5684",
+      "horarioAtencion": "Lunes a Jueves 8:00-16:00"
+    },
+    {
+      "id": 8,
+      "nombre": "Dr. Tomás Medina Soler",
+      "especialidad": "Cardiólogo Preventivo y Rehabilitación Deportiva",
+      "imagen": "assets/img_professionals/tms.jpg",
+      "obrasSociales": [5, 6, 7],
+      "email": "tmedina@galeno.com",
+      "telefono": "+54 11 1234-5685",
+      "horarioAtencion": "Lunes a Viernes 7:00-15:00"
+    }
+  ]
+}

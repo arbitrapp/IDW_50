@@ -1,0 +1,76 @@
+{
+  "obrasSociales": [
+    {
+      "id": 1,
+      "nombre": "Construir Salud",
+      "logo": "assets/img_os/os_conSalud.png",
+      "activo": true
+    },
+    {
+      "id": 2,
+      "nombre": "Galeno",
+      "logo": "assets/img_os/os_galeno.png",
+      "activo": true
+    },
+    {
+      "id": 3,
+      "nombre": "IOSFA",
+      "logo": "assets/img_os/os_iosfa.png",
+      "activo": true
+    },
+    {
+      "id": 4,
+      "nombre": "OSDE",
+      "logo": "assets/img_os/os_osde.png",
+      "activo": true
+    },
+    {
+      "id": 5,
+      "nombre": "OSECAC",
+      "logo": "assets/img_os/os_osecac.png",
+      "activo": true
+    },
+    {
+      "id": 6,
+      "nombre": "OSEF",
+      "logo": "assets/img_os/os_osef.png",
+      "activo": true
+    },
+    {
+      "id": 7,
+      "nombre": "OSIM",
+      "logo": "assets/img_os/os_osim.png",
+      "activo": true
+    },
+    {
+      "id": 8,
+      "nombre": "OSPESA",
+      "logo": "assets/img_os/os_ospesa.png",
+      "activo": true
+    },
+    {
+      "id": 9,
+      "nombre": "OSPIA",
+      "logo": "assets/img_os/os_ospia.png",
+      "activo": true
+    },
+    {
+      "id": 10,
+      "nombre": "OSPIS",
+      "logo": "assets/img_os/os_ospis.png",
+      "activo": true
+    },
+    {
+      "id": 11,
+      "nombre": "OSPIT",
+      "logo": "assets/img_os/os_ospit.png",
+      "activo": true
+    },
+    {
+      "id": 12,
+      "nombre": "Swiss Medical",
+      "logo": "assets/img_os/os_sm.png",
+      "activo": true
+    }
+  ]
+}

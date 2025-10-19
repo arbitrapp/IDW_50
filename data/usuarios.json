@@ -1,0 +1,12 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "email": "admin@galeno.com",
+      "rol": "administrador",
+      "activo": true
+    }
+  ]
+}

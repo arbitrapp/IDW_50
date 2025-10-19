@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrar Médicos - Centro Médico Galeno</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="bg-primary text-light mb-4">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center">
+            <img
+              src="assets/logo.png"
+              class="navbar-brand me-3"
+              height="50px"
+            />
+            <span class="navbar-brand mb-0 h1">Administración</span>
+          </div>
+          <div class="navbar-nav">
+            <a class="nav-link active" href="admin-medicos.html">Médicos</a>
+            <a class="nav-link text-light" href="admin-obras-sociales.html"
+              >Obras Sociales</a
+            >
+            <button class="nav-link text-light" onclick="cerrarSesion()">
+              Cerrar Session
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0 text-primary">Gestión de Médicos</h2>
+        <button class="btn btn-primary" onclick="abrirModalCrear()">
+          <i class="bi bi-plus-circle me-2"></i>Nuevo Médico
+        </button>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th style="width: 100px">Foto</th>
+                  <th>Nombre</th>
+                  <th>Especialidad</th>
+                  <th>Contacto</th>
+                  <th>Obras Sociales</th>
+                  <th style="width: 150px">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-medicos-body">
+                <!-- Datos cargados dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal Médico -->
+    <div class="modal fade" id="modalMedico" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitulo">Nuevo Médico</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="formMedico">
+              <input type="hidden" id="medicoId" />
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label"
+                      >Nombre completo <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="especialidad" class="form-label"
+                      >Especialidad <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="especialidad"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="imagen" class="form-label">URL de imagen</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="imagen"
+                      placeholder="assets/img_professionals/ejemplo.jpg"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="horarioAtencion" class="form-label"
+                      >Horario de Atención</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="horarioAtencion"
+                      placeholder="Lunes a Viernes 8:00-16:00"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Obras Sociales</label>
+                <div
+                  id="obras-sociales-checkboxes"
+                  class="border rounded p-3 bg-light"
+                >
+                  <!-- Checkboxes generados dinámicamente -->
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="guardarMedico()"
+            >
+              Guardar Médico
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./js/medicos-admin.js"></script>
+  </body>
+</html>

@@ -10,6 +10,8 @@ const AUTH_KEYS = {
   USUARIO_ACTUAL: "usuario_actual_galeno",
   SESION_ACTIVA: "sesion_activa_galeno",
 };
+// Aca chequeamos si esta activa la session, si no lo redirecciona al login
+import { estaAutenticado } from "./autenticationUtils.js";
 
 // Variables globales
 let medicos = [];
@@ -18,6 +20,7 @@ let medicoEditando = null;
 
 // Inicializar la página
 document.addEventListener("DOMContentLoaded", function () {
+  if (estaAutenticado()) return;
   cargarDatos();
   configurarEventListeners();
 });

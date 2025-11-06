@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservar Turno - Centro Médico Galeno</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  </head>
+  <body>
+    <header class="bg-primary text-light m-0 p-0">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <img src="assets/logo.png" class="navbar-brand" height="100px" />
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNavAltMarkup"
+          >
+            <div class="navbar-nav text-center">
+              <a class="nav-link" href="index.html">Inicio</a>
+              <a class="nav-link" href="institucional.html">Institucional</a>
+              <a class="nav-link" href="contacto.html">Contacto</a>
+              <a class="nav-link" href="reservas.html">Reservar Turno</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container my-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+              <h2 class="card-title mb-0">
+                <i class="bi bi-calendar-plus me-2"></i>Reservar Turno Médico
+              </h2>
+            </div>
+            <div class="card-body p-4">
+              <!-- Paso 1: Seleccionar Médico -->
+              <div id="paso1" class="paso">
+                <h4 class="text-primary mb-4">
+                  <i class="bi bi-person-badge me-2"></i>Paso 1: Seleccione un profesional
+                </h4>
+                <div class="row g-3" id="lista-medicos">
+                  <!-- Los médicos se cargarán aquí dinámicamente -->
+                </div>
+              </div>
+
+              <!-- Paso 2: Seleccionar Turno -->
+              <div id="paso2" class="paso d-none">
+                <h4 class="text-primary mb-4">
+                  <i class="bi bi-clock me-2"></i>Paso 2: Seleccione fecha y hora
+                </h4>
+                <div class="row">
+                  <div class="col-12">
+                    <div id="turnos-disponibles" class="row g-2">
+                      <!-- Los turnos disponibles se cargarán aquí -->
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <button class="btn btn-outline-secondary" onclick="volverAPaso1()">
+                    <i class="bi bi-arrow-left me-1"></i>Volver a profesionales
+                  </button>
+                </div>
+              </div>
+
+              <!-- Paso 3: Datos del Paciente -->
+              <div id="paso3" class="paso d-none">
+                <h4 class="text-primary mb-4">
+                  <i class="bi bi-person-vcard me-2"></i>Paso 3: Complete sus datos
+                </h4>
+                
+                <!-- Resumen del turno seleccionado -->
+                <div class="card mb-4 border-primary">
+                  <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">
+                      <i class="bi bi-info-circle me-2"></i>Resumen del Turno Seleccionado
+                    </h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="row" id="resumen-turno-seleccionado">
+                      <!-- Se llenará dinámicamente -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Formulario de datos del paciente -->
+                <form id="form-reserva">
+                  <input type="hidden" id="medico-seleccionado">
+                  <input type="hidden" id="turno-seleccionado">
+                  
+                  <div class="card mb-4">
+                    <div class="card-header bg-light">
+                      <h5 class="card-title mb-0">
+                        <i class="bi bi-person me-2"></i>Datos Personales
+                      </h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="nombre-paciente" class="form-label">Nombre completo *</label>
+                          <input type="text" class="form-control" id="nombre-paciente" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="documento-paciente" class="form-label">Documento *</label>
+                          <input type="text" class="form-control" id="documento-paciente" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fecha-nacimiento" class="form-label">Fecha de Nacimiento *</label>
+                          <input type="date" class="form-control" id="fecha-nacimiento" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="genero-paciente" class="form-label">Género *</label>
+                          <select class="form-select" id="genero-paciente" required>
+                            <option value="">Seleccione...</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="otro">Otro</option>
+                            <option value="prefiero-no-decir">Prefiero no decir</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card mb-4">
+                    <div class="card-header bg-light">
+                      <h5 class="card-title mb-0">
+                        <i class="bi bi-telephone me-2"></i>Datos de Contacto
+                      </h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="email-paciente" class="form-label">Email *</label>
+                          <input type="email" class="form-control" id="email-paciente" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="telefono-paciente" class="form-label">Teléfono *</label>
+                          <input type="tel" class="form-control" id="telefono-paciente" required>
+                        </div>
+                        <div class="col-12">
+                          <label for="direccion-paciente" class="form-label">Dirección</label>
+                          <input type="text" class="form-control" id="direccion-paciente" placeholder="Calle, número, ciudad">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card mb-4">
+                    <div class="card-header bg-light">
+                      <h5 class="card-title mb-0">
+                        <i class="bi bi-heart-pulse me-2"></i>Datos de Salud
+                      </h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="obra-social" class="form-label">Obra Social *</label>
+                          <select class="form-select" id="obra-social" required>
+                            <option value="">Seleccione su obra social...</option>
+                            <!-- Las obras sociales se cargarán aquí -->
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="numero-afiliado" class="form-label">Número de Afiliado</label>
+                          <input type="text" class="form-control" id="numero-afiliado" placeholder="Si tiene obra social">
+                        </div>
+                        <div class="col-12">
+                          <label for="motivo-consulta" class="form-label">Motivo de la Consulta</label>
+                          <textarea class="form-control" id="motivo-consulta" rows="3" placeholder="Describa brevemente el motivo de su consulta"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Resumen y costo final -->
+                  <div class="card mb-4 bg-light">
+                    <div class="card-header">
+                      <h5 class="card-title mb-0">
+                        <i class="bi bi-cash-coin me-2"></i>Resumen y Costo Final
+                      </h5>
+                    </div>
+                    <div class="card-body">
+                      <div id="resumen-reserva">
+                        <!-- El resumen se actualizará dinámicamente -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Términos y condiciones -->
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="terminos-condiciones" required>
+                        <label class="form-check-label" for="terminos-condiciones">
+                          Acepto los <a href="#" data-bs-toggle="modal" data-bs-target="#modalTerminos">términos y condiciones</a> 
+                          y la <a href="#" data-bs-toggle="modal" data-bs-target="#modalPrivacidad">política de privacidad</a> *
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" onclick="volverAPaso2()">
+                      <i class="bi bi-arrow-left me-1"></i>Volver a horarios
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                      <i class="bi bi-check-circle me-1"></i>Confirmar Reserva
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Paso 4: Confirmación -->
+              <div id="paso4" class="paso d-none text-center">
+                <div class="alert alert-success">
+                  <i class="bi bi-check-circle display-4 text-success mb-3"></i>
+                  <h3 class="alert-heading">¡Reserva Confirmada!</h3>
+                  <p id="mensaje-confirmacion" class="mb-0"></p>
+                </div>
+                <div class="mt-4">
+                  <a href="index.html" class="btn btn-primary me-2">
+                    <i class="bi bi-house me-1"></i>Volver al Inicio
+                  </a>
+                  <a href="reservas.html" class="btn btn-outline-primary">
+                    <i class="bi bi-plus-circle me-1"></i>Nueva Reserva
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal Términos y Condiciones -->
+    <div class="modal fade" id="modalTerminos" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Términos y Condiciones</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Política de Cancelación</h6>
+            <p>Las cancelaciones deben realizarse con al menos 24 horas de anticipación. Las cancelaciones con menos de 24 horas pueden generar un cargo.</p>
+            
+            <h6>Puntualidad</h6>
+            <p>Se recomienda llegar 15 minutos antes de la cita programada. Retrasos superiores a 15 minutos pueden resultar en la cancelación del turno.</p>
+            
+            <h6>Documentación</h6>
+            <p>Es obligatorio presentar documento de identidad y carnet de la obra social al momento de la consulta.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Política de Privacidad -->
+    <div class="modal fade" id="modalPrivacidad" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Política de Privacidad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Protección de Datos</h6>
+            <p>Sus datos personales son tratados de forma confidencial y solo se utilizan para fines médicos y administrativos.</p>
+            
+            <h6>Confidencialidad</h6>
+            <p>Toda la información médica es estrictamente confidencial y se maneja según las normativas vigentes de protección de datos.</p>
+            
+            <h6>Uso de Información</h6>
+            <p>La información proporcionada será utilizada exclusivamente para la gestión de turnos y atención médica.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-center bg-primary text-light m-0 p-3">
+      &copy;2025 Centro Médico Galeno - Todos los derechos reservados.
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="js/reservas.js"></script>
+  </body>
+</html>

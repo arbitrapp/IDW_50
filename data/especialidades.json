@@ -1,3 +1,36 @@
 {
-  "especialidades": []
+  "especialidades": [
+    {
+      "id": 1,
+      "nombre": "Oncología Integrativa"
+    },
+    {
+      "id": 2,
+      "nombre": "Medicina del Sueño"
+    },
+    {
+      "id": 3,
+      "nombre": "Pediatría del Desarrollo"
+    },
+    {
+      "id": 4,
+      "nombre": "Cirugía de Columna"
+    },
+    {
+      "id": 5,
+      "nombre": "Psiquiatría de Alta Complejidad"
+    },
+    {
+      "id": 6,
+      "nombre": "Infectología"
+    },
+    {
+      "id": 7,
+      "nombre": "Ginecología y Fertilidad"
+    },
+    {
+      "id": 8,
+      "nombre": "Cardiología Preventiva"
+    }
+  ]
 }

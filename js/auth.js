@@ -1,16 +1,20 @@
-import { inicializarStorage, obtenerUsuarios } from "./storage.js";
+// js/auth.js
+import { isAuthenticated, logout } from "./autenticationUtils.js";
 
-// Claves para sessionStorage (más seguro que localStorage para login)
+// Claves para sessionStorage
 const AUTH_KEYS = {
-  USUARIO_ACTUAL: "usuario_actual_galeno",
-  SESION_ACTIVA: "sesion_activa_galeno",
+  ACCESS_TOKEN: "accessToken_galeno",
+  USUARIO_ACTUAL: "usuario_actual_galeno"
+};
+
+// URL de la API DummyJSON
+const API_URLS = {
+  LOGIN: "https://dummyjson.com/auth/login",
+  USUARIOS: "https://dummyjson.com/users"
 };
 
 // Inicializar y verificar autenticación
-document.addEventListener("DOMContentLoaded", async function () {
-  await inicializarStorage();
-  estaAutenticado();
-
+document.addEventListener("DOMContentLoaded", function () {
   // Si estamos en página de login, configurar el formulario
   if (document.getElementById("loginForm")) {
     configurarLogin();
@@ -26,56 +30,77 @@ function configurarLogin() {
   const loginForm = document.getElementById("loginForm");
   const errorMessage = document.getElementById("errorMessage");
 
-  loginForm.addEventListener("submit", function (e) {
+  loginForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
 
-    if (autenticarUsuario(username, password)) {
-      // Login exitoso
-      errorMessage.classList.add("d-none");
-      mostrarMensajeExito();
-    } else {
-      // Mostrar error
+    try {
+      const loginExitoso = await autenticarConDummyJSON(username, password);
+      
+      if (loginExitoso) {
+        errorMessage.classList.add("d-none");
+        mostrarMensajeExito();
+      } else {
+        throw new Error("Credenciales inválidas");
+      }
+    } catch (error) {
+      console.error("Error en login:", error);
+      errorMessage.textContent = "Usuario o contraseña incorrectos";
       errorMessage.classList.remove("d-none");
     }
   });
 }
 
-function autenticarUsuario(username, password) {
-  const usuarios = obtenerUsuarios();
-  const usuario = usuarios.find(
-    (u) =>
-      u.username === username && u.password === password && u.activo === true
-  );
+// Autenticar con DummyJSON API
+async function autenticarConDummyJSON(username, password) {
+  try {
+    const response = await fetch(API_URLS.LOGIN, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    });
 
-  if (usuario) {
-    // Guardar sesión (sin contraseña por seguridad)
-    const usuarioSesion = {
-      id: usuario.id,
-      username: usuario.username,
-      email: usuario.email,
-      rol: usuario.rol,
-    };
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`);
+    }
 
-    sessionStorage.setItem(
-      AUTH_KEYS.USUARIO_ACTUAL,
-      JSON.stringify(usuarioSesion)
-    );
-    sessionStorage.setItem(AUTH_KEYS.SESION_ACTIVA, "true");
-    return true;
+    const data = await response.json();
+    
+    if (data.accessToken) {
+      // Guardar token y datos del usuario en sessionStorage
+      sessionStorage.setItem(AUTH_KEYS.ACCESS_TOKEN, data.accessToken);
+      
+      const usuarioSesion = {
+        id: data.id,
+        username: data.username,
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName
+      };
+      
+      sessionStorage.setItem(AUTH_KEYS.USUARIO_ACTUAL, JSON.stringify(usuarioSesion));
+      return true;
+    }
+    
+    return false;
+  } catch (error) {
+    console.error("Error en autenticación:", error);
+    throw error;
   }
-
-  return false;
 }
 
 function mostrarMensajeExito() {
   const submitBtn = document.querySelector('#loginForm button[type="submit"]');
   const originalText = submitBtn.innerHTML;
 
-  submitBtn.innerHTML =
-    '<i class="bi bi-check-circle me-2"></i>Acceso concedido...';
+  submitBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Acceso concedido...';
   submitBtn.disabled = true;
   submitBtn.classList.remove("btn-primary");
   submitBtn.classList.add("btn-success");
@@ -88,49 +113,43 @@ function mostrarMensajeExito() {
 }
 
 function verificarAutenticacion() {
-  const sesionActiva = sessionStorage.getItem(AUTH_KEYS.SESION_ACTIVA);
-  const usuarioActual = sessionStorage.getItem(AUTH_KEYS.USUARIO_ACTUAL);
-
-  if (!sesionActiva || !usuarioActual) {
-    // No autenticado - redirigir al login
+  if (!isAuthenticated()) {
     window.location.href = "login.html";
     return;
   }
 
-  // Mostrar información del usuario en el header
-  mostrarInfoUsuario(JSON.parse(usuarioActual));
+  // Mostrar información del usuario en el header si existe
+  const usuarioActual = obtenerUsuarioActual();
+  if (usuarioActual) {
+    mostrarInfoUsuario(usuarioActual);
+  }
 }
 
 function mostrarInfoUsuario(usuario) {
   const navbarNav = document.querySelector("header .navbar-nav");
-  if (navbarNav) {
+  if (navbarNav && !navbarNav.querySelector(".nav-item.dropdown")) {
     const usuarioInfo = `
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown">
-                    <i class="bi bi-person-circle me-1"></i>${usuario.username}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><span class="dropdown-item-text small"><i class="bi bi-person me-2"></i>${usuario.rol}</span></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" onclick="cerrarSesion()"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</a></li>
-                </ul>
-            </li>
-        `;
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle me-1"></i>${usuario.username}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><span class="dropdown-item-text small">
+            <i class="bi bi-person me-2"></i>${usuario.firstName} ${usuario.lastName}
+          </span></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" onclick="logout()">
+            <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+          </a></li>
+        </ul>
+      </li>
+    `;
     navbarNav.innerHTML += usuarioInfo;
   }
 }
 
-export function cerrarSesion() {
-  sessionStorage.removeItem(AUTH_KEYS.USUARIO_ACTUAL);
-  sessionStorage.removeItem(AUTH_KEYS.SESION_ACTIVA);
-  mostrarSpinnerTransicion(() => {
-    window.location.href = "login.html";
-  });
-}
-
 // Función para mostrar spinner de transición
 function mostrarSpinnerTransicion(callback) {
-  // Crear overlay con spinner
   const overlay = document.createElement("div");
   overlay.id = "transitionOverlay";
   overlay.innerHTML = `
@@ -142,7 +161,6 @@ function mostrarSpinnerTransicion(callback) {
     </div>
   `;
 
-  // Agregar estilos inline
   overlay.style.cssText = `
     position: fixed;
     top: 0;
@@ -168,34 +186,21 @@ function mostrarSpinnerTransicion(callback) {
 
   document.body.appendChild(overlay);
 
-  // Animar entrada
   setTimeout(() => {
     overlay.style.opacity = "1";
     spinnerContainer.style.transform = "scale(1)";
   }, 10);
 
-  // Ejecutar callback después de la animación
   setTimeout(() => {
     if (callback) callback();
   }, 500);
 }
 
-// // Hacer función global para el onclick
-// no funciona ya que le btn logout esta en otras paginas
-// window.cerrarSesion = cerrarSesion;
-
-// Verificar si el usuario está autenticado
-export function estaAutenticado() {
-  const auth = sessionStorage.getItem(AUTH_KEYS.SESION_ACTIVA);
-  if (auth) {
-    mostrarSpinnerTransicion(() => {
-      window.location.assign("../admin-medicos.html");
-    });
-  }
-}
-
-// Obtener usuario actual
-export function obtenerUsuarioActual() {
+// Obtener usuario actual desde sessionStorage
+function obtenerUsuarioActual() {
   const usuario = sessionStorage.getItem(AUTH_KEYS.USUARIO_ACTUAL);
   return usuario ? JSON.parse(usuario) : null;
 }
+
+// Hacer funciones globales
+window.logout = logout;

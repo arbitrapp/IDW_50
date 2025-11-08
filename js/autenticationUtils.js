@@ -1,13 +1,27 @@
+// js/autenticationUtils.js
 const AUTH_KEYS = {
-  USUARIO_ACTUAL: "usuario_actual_galeno",
-  SESION_ACTIVA: "sesion_activa_galeno",
+  ACCESS_TOKEN: "accessToken_galeno",
+  USUARIO_ACTUAL: "usuario_actual_galeno"
 };
 
-export function estaAutenticado() {
-  const auth = sessionStorage.getItem(AUTH_KEYS.SESION_ACTIVA);
-  if (!auth) {
-    window.location.assign("../login.html");
-    return true;
-  }
-  false;
+// Verificar si el usuario está autenticado
+export function isAuthenticated() {
+  const token = sessionStorage.getItem(AUTH_KEYS.ACCESS_TOKEN);
+  return !!token; // Devuelve true si existe token, false si no
 }
+
+// Cerrar sesión
+export function logout() {
+  sessionStorage.removeItem(AUTH_KEYS.ACCESS_TOKEN);
+  sessionStorage.removeItem(AUTH_KEYS.USUARIO_ACTUAL);
+  window.location.href = "login.html";
+}
+
+// Obtener usuario actual
+export function obtenerUsuarioActual() {
+  const usuario = sessionStorage.getItem(AUTH_KEYS.USUARIO_ACTUAL);
+  return usuario ? JSON.parse(usuario) : null;
+}
+
+// Hacer funciones globales para HTML
+window.logout = logout;

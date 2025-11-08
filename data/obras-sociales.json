@@ -4,73 +4,85 @@
       "id": 1,
       "nombre": "Construir Salud",
       "logo": "assets/img_os/os_conSalud.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 20
     },
     {
       "id": 2,
       "nombre": "Galeno",
       "logo": "assets/img_os/os_galeno.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 15
     },
     {
       "id": 3,
       "nombre": "IOSFA",
       "logo": "assets/img_os/os_iosfa.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 25
     },
     {
       "id": 4,
       "nombre": "OSDE",
       "logo": "assets/img_os/os_osde.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 30
     },
     {
       "id": 5,
       "nombre": "OSECAC",
       "logo": "assets/img_os/os_osecac.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 10
     },
     {
       "id": 6,
       "nombre": "OSEF",
       "logo": "assets/img_os/os_osef.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 18
     },
     {
       "id": 7,
       "nombre": "OSIM",
       "logo": "assets/img_os/os_osim.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 22
     },
     {
       "id": 8,
       "nombre": "OSPESA",
       "logo": "assets/img_os/os_ospesa.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 12
     },
     {
       "id": 9,
       "nombre": "OSPIA",
       "logo": "assets/img_os/os_ospia.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 28
     },
     {
       "id": 10,
       "nombre": "OSPIS",
       "logo": "assets/img_os/os_ospis.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 8
     },
     {
       "id": 11,
       "nombre": "OSPIT",
       "logo": "assets/img_os/os_ospit.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 35
     },
     {
       "id": 12,
       "nombre": "Swiss Medical",
       "logo": "assets/img_os/os_sm.png",
-      "activo": true
+      "activo": true,
+      "porcentaje": 40
     }
   ]
 }

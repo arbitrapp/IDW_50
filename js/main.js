@@ -1,9 +1,10 @@
 import { 
     obtenerMedicos, 
     obtenerObrasSocialesPorIds,
-    inicializarStorage 
+    inicializarStorage,
+    obtenerEspecialidadPorId
 } from './storage.js';
-
+//PARTE DE CRISTIAN - INICIALIZACIÓN Y FUNCIONALIDAD GENERAL
 // Variables globales para paginación
 let medicosPaginados = [];
 let paginaActual = 1;
@@ -22,7 +23,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('❌ Error inicializando:', error);
     }
 });
+// FIN CRISTIAN
 
+// PARTE DE JOSE - MÉDICOS EN INDEX
 function cargarProfesionales() {
     console.log('Obteniendo médicos...');
     const todosLosMedicos = obtenerMedicos();
@@ -83,6 +86,7 @@ function crearCardMedico(medico) {
     // Filtrar solo obras sociales activas
     const obrasSocialesActivas = obrasSociales.filter(os => os.activo !== false);
     const obrasSocialesNombres = obrasSocialesActivas.map(os => os.nombre).join(', ');
+    const especialidad = obtenerEspecialidadPorId(medico.especialidad);
     
     return `
         <div class="col-12 col-sm-6 col-lg-3">
@@ -94,15 +98,22 @@ function crearCardMedico(medico) {
                     <h5 class="card-title text-primary fw-bold">${medico.nombre}</h5>
                     <p class="card-text text-muted mb-2">
                         <i class="bi bi-briefcase me-2"></i>
-                        <strong>Especialidad:</strong> ${medico.especialidad}
+                        <strong>Especialidad:</strong> ${especialidad ? especialidad.nombre : medico.especialidad}
+                    </p>
+                    <p class="card-text text-muted mb-2">
+                        <i class="bi bi-clock me-2"></i>
+                        <strong>Horario:</strong> ${medico.horarioAtencion}
                     </p>
                     <p class="card-text text-muted mb-3">
                         <i class="bi bi-heart-pulse me-2"></i>
                         <strong>Obras Sociales:</strong> 
                         <small>${obrasSocialesNombres || 'No especificadas'}</small>
                     </p>
+                    <p class="card-text mb-3">
+                        <strong class="text-success">Valor consulta: $${medico.precio || medico.valorConsulta || 0}</strong>
+                    </p>
                     <div class="mt-auto">
-                        <a href="contacto.html" class="btn btn-primary w-100 py-2" style="border-radius: 25px;">
+                        <a href="reservas.html?medico=${medico.id}" class="btn btn-primary w-100 py-2" style="border-radius: 25px;">
                             <i class="bi bi-calendar-check me-2"></i>Reservar turno
                         </a>
                     </div>
@@ -198,6 +209,9 @@ function cambiarPagina(nuevaPagina) {
     });
 }
 
+//FIN DE JOSE
+
+// PARTE DE NESTOR - OBRAS SOCIALES EN INDEX
 function cargarObrasSociales() {
     console.log('Cargando obras sociales...');
     const obrasSociales = obtenerObrasSocialesActivas();
@@ -227,7 +241,7 @@ function cargarObrasSociales() {
         return;
     }
     
-    // Agrupar obras sociales en grupos de 3 (como en el diseño original)
+    // Agrupar obras sociales en grupos de 3 
     const grupos = [];
     for (let i = 0; i < obrasSociales.length; i += 3) {
         grupos.push(obrasSociales.slice(i, i + 3));
@@ -269,6 +283,7 @@ function crearItemObraSocialOriginal(obraSocial) {
                             <i class="bi bi-building text-muted"></i>
                          </div>`
                     }
+                    <small class="d-block mt-2 text-muted">${obraSocial.porcentaje || 0}% descuento</small>
                 </div>
             </a>
         </div>

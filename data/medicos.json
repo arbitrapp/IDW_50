@@ -3,7 +3,8 @@
     {
       "id": 1,
       "nombre": "Dra. Valeria Guzmán Torres",
-      "especialidad": "Oncóloga Integrativa y Medicina Personalizada",
+      "especialidad": 1,
+      "precio": 8500,
       "imagen": "assets/img_professionals/vgt.jpg",
       "obrasSociales": [1, 2, 3, 4],
       "email": "vguzman@galeno.com",
@@ -13,7 +14,8 @@
     {
       "id": 2,
       "nombre": "Dr. Marcelo Álvarez Quintana",
-      "especialidad": "Especialista en Medicina del Sueño y Trastornos Circadianos",
+      "especialidad": 2,
+      "precio": 7200,
       "imagen": "assets/img_professionals/maq.jpg",
       "obrasSociales": [5, 6, 7, 8],
       "email": "malvarez@galeno.com",
@@ -23,7 +25,8 @@
     {
       "id": 3,
       "nombre": "Dra. Camila Rodríguez Pardo",
-      "especialidad": "Pediatra del Desarrollo y Neuroestimulación Infantil",
+      "especialidad": 3,
+      "precio": 6800,
       "imagen": "assets/img_professionals/crp.jpg",
       "obrasSociales": [9, 10, 11, 12],
       "email": "crodriguez@galeno.com",
@@ -33,7 +36,8 @@
     {
       "id": 4,
       "nombre": "Dr. Esteban Ríos Ferreyra",
-      "especialidad": "Cirujano de Columna y Terapias Regenerativas",
+      "especialidad": 4,
+      "precio": 12500,
       "imagen": "assets/img_professionals/erf.jpg",
       "obrasSociales": [1, 2, 3, 4],
       "email": "erios@galeno.com",
@@ -43,7 +47,8 @@
     {
       "id": 5,
       "nombre": "Dra. Natalia Fernández Olmos",
-      "especialidad": "Psiquiatra de Alta Complejidad y Trastornos del Humor",
+      "especialidad": 5,
+      "precio": 9500,
       "imagen": "assets/img_professionals/nfo.jpg",
       "obrasSociales": [9, 11, 5, 6],
       "email": "nfernandez@galeno.com",
@@ -53,7 +58,8 @@
     {
       "id": 6,
       "nombre": "Dr. Julián Herrera Domínguez",
-      "especialidad": "Infectólogo en Enfermedades Emergentes y Medicina Tropical",
+      "especialidad": 6,
+      "precio": 7800,
       "imagen": "assets/img_professionals/jhd.jpg",
       "obrasSociales": [9, 6, 7, 8, 1],
       "email": "jherrera@galeno.com",
@@ -63,7 +69,8 @@
     {
       "id": 7,
       "nombre": "Dr. Sergio Méndez Cabrera",
-      "especialidad": "Ginecólogo Especializado en Fertilidad y Endocrinología Reproductiva",
+      "especialidad": 7,
+      "precio": 8900,
       "imagen": "assets/img_professionals/smc.jpg",
       "obrasSociales": [9, 11, 6, 1],
       "email": "smendez@galeno.com",
@@ -73,7 +80,8 @@
     {
       "id": 8,
       "nombre": "Dr. Tomás Medina Soler",
-      "especialidad": "Cardiólogo Preventivo y Rehabilitación Deportiva",
+      "especialidad": 8,
+      "precio": 8200,
       "imagen": "assets/img_professionals/tms.jpg",
       "obrasSociales": [5, 6, 7],
       "email": "tmedina@galeno.com",

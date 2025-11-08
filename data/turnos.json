@@ -1,0 +1,130 @@
+{
+  "turnos": [
+    {
+      "id": 1,
+      "medicoId": 1,
+      "fechaHora": "2025-01-20T10:00:00",
+      "disponible": true
+    },
+    {
+      "id": 2,
+      "medicoId": 1,
+      "fechaHora": "2025-01-20T11:00:00",
+      "disponible": true
+    },
+    {
+      "id": 3,
+      "medicoId": 1,
+      "fechaHora": "2025-01-21T10:00:00",
+      "disponible": true
+    },
+    {
+      "id": 4,
+      "medicoId": 1,
+      "fechaHora": "2025-01-21T11:00:00",
+      "disponible": true
+    },
+    {
+      "id": 5,
+      "medicoId": 2,
+      "fechaHora": "2025-01-20T09:00:00",
+      "disponible": true
+    },
+    {
+      "id": 6,
+      "medicoId": 2,
+      "fechaHora": "2025-01-20T14:00:00",
+      "disponible": true
+    },
+    {
+      "id": 7,
+      "medicoId": 2,
+      "fechaHora": "2025-01-21T09:00:00",
+      "disponible": true
+    },
+    {
+      "id": 8,
+      "medicoId": 3,
+      "fechaHora": "2025-01-22T08:00:00",
+      "disponible": true
+    },
+    {
+      "id": 9,
+      "medicoId": 3,
+      "fechaHora": "2025-01-22T09:00:00",
+      "disponible": true
+    },
+    {
+      "id": 10,
+      "medicoId": 3,
+      "fechaHora": "2025-01-23T08:00:00",
+      "disponible": true
+    },
+    {
+      "id": 11,
+      "medicoId": 4,
+      "fechaHora": "2025-01-23T10:00:00",
+      "disponible": true
+    },
+    {
+      "id": 12,
+      "medicoId": 4,
+      "fechaHora": "2025-01-23T11:00:00",
+      "disponible": true
+    },
+    {
+      "id": 13,
+      "medicoId": 4,
+      "fechaHora": "2025-01-24T10:00:00",
+      "disponible": true
+    },
+    {
+      "id": 14,
+      "medicoId": 5,
+      "fechaHora": "2025-01-24T09:00:00",
+      "disponible": true
+    },
+    {
+      "id": 15,
+      "medicoId": 5,
+      "fechaHora": "2025-01-24T10:00:00",
+      "disponible": true
+    },
+    {
+      "id": 16,
+      "medicoId": 6,
+      "fechaHora": "2025-01-25T08:00:00",
+      "disponible": true
+    },
+    {
+      "id": 17,
+      "medicoId": 6,
+      "fechaHora": "2025-01-25T09:00:00",
+      "disponible": true
+    },
+    {
+      "id": 18,
+      "medicoId": 7,
+      "fechaHora": "2025-01-26T10:00:00",
+      "disponible": true
+    },
+    {
+      "id": 19,
+      "medicoId": 7,
+      "fechaHora": "2025-01-26T11:00:00",
+      "disponible": true
+    },
+    {
+      "id": 20,
+      "medicoId": 8,
+      "fechaHora": "2025-01-27T07:00:00",
+      "disponible": true
+    },
+    {
+      "id": 21,
+      "medicoId": 8,
+      "fechaHora": "2025-01-27T08:00:00",
+      "disponible": true
+    }
+  ]
+}

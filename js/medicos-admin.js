@@ -54,7 +54,7 @@ function renderizarTablaMedicos() {
   if (medicos.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="7" class="text-center py-4">
+        <td colspan="8" class="text-center py-4">
           <div class="text-muted">
             <i class="bi bi-person-x display-4 d-block mb-2"></i>
             No hay médicos registrados
@@ -93,6 +93,10 @@ function renderizarTablaMedicos() {
           <td class="align-middle">
             <strong class="d-block">${medico.nombre}</strong>
             <small class="text-muted">${nombreEspecialidad}</small>
+            ${medico.descripcion ? `<small class="text-muted d-block mt-1" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${medico.descripcion}</small>` : ''}
+          </td>
+          <td class="align-middle">
+            <span class="badge bg-primary">${medico.matricula || 'N/A'}</span>
           </td>
           <td class="align-middle">
             ${nombreEspecialidad}
@@ -213,6 +217,7 @@ function editarMedico(id) {
 
   document.getElementById("modalTitulo").textContent = "Editar Médico";
   document.getElementById("medicoId").value = medicoEditando.id;
+  document.getElementById("matricula").value = medicoEditando.matricula || "";
   document.getElementById("nombre").value = medicoEditando.nombre || "";
   document.getElementById("especialidad").value = medicoEditando.especialidad || "";
   document.getElementById("precio").value = medicoEditando.precio || "";
@@ -220,6 +225,7 @@ function editarMedico(id) {
   document.getElementById("email").value = medicoEditando.email || "";
   document.getElementById("telefono").value = medicoEditando.telefono || "";
   document.getElementById("horarioAtencion").value = medicoEditando.horarioAtencion || "";
+  document.getElementById("descripcion").value = medicoEditando.descripcion || "";
 
   // Marcar checkboxes de obras sociales
   obrasSociales.forEach((os) => {
@@ -238,6 +244,7 @@ function editarMedico(id) {
 function guardarMedico() {
   // Obtener valores del formulario
   const id = document.getElementById("medicoId").value;
+  const matricula = parseInt(document.getElementById("matricula").value);
   const nombre = document.getElementById("nombre").value.trim();
   const especialidad = document.getElementById("especialidad").value;
   const precio = parseFloat(document.getElementById("precio").value);
@@ -245,8 +252,14 @@ function guardarMedico() {
   const email = document.getElementById("email").value.trim();
   const telefono = document.getElementById("telefono").value.trim();
   const horarioAtencion = document.getElementById("horarioAtencion").value.trim();
+  const descripcion = document.getElementById("descripcion").value.trim();
 
   // Validaciones básicas
+  if (!matricula || isNaN(matricula) || matricula <= 0) {
+    alert("La matrícula profesional es obligatoria y debe ser un número válido");
+    return;
+  }
+
   if (!nombre) {
     alert("El nombre es obligatorio");
     return;
@@ -259,6 +272,18 @@ function guardarMedico() {
 
   if (isNaN(precio) || precio < 0) {
     alert("El precio debe ser un número válido mayor o igual a 0");
+    return;
+  }
+
+  if (!descripcion) {
+    alert("La descripción profesional es obligatoria");
+    return;
+  }
+
+  // Verificar si la matrícula ya existe (excepto para el médico que se está editando)
+  const matriculaExistente = medicos.find(m => m.matricula === matricula && m.id !== parseInt(id));
+  if (matriculaExistente) {
+    alert(`La matrícula ${matricula} ya está asignada al médico: ${matriculaExistente.nombre}`);
     return;
   }
 
@@ -276,6 +301,7 @@ function guardarMedico() {
     // Actualizar médico existente
     medico = {
       ...medicoEditando,
+      matricula,
       nombre,
       especialidad: parseInt(especialidad),
       precio,
@@ -283,6 +309,7 @@ function guardarMedico() {
       email: email || null,
       telefono: telefono || null,
       horarioAtencion: horarioAtencion || null,
+      descripcion,
       obrasSociales: obrasSocialesSeleccionadas,
     };
 
@@ -295,6 +322,7 @@ function guardarMedico() {
     // Crear nuevo médico
     medico = {
       id: generarIdMedico(),
+      matricula,
       nombre,
       especialidad: parseInt(especialidad),
       precio,
@@ -302,6 +330,7 @@ function guardarMedico() {
       email: email || null,
       telefono: telefono || null,
       horarioAtencion: horarioAtencion || null,
+      descripcion,
       obrasSociales: obrasSocialesSeleccionadas,
     };
 

@@ -12,7 +12,9 @@ const STORAGE_KEYS = {
 const DATOS_PRUEBA_MEDICOS = [
     {
         "id": 1,
+        "matricula": 12345,
         "nombre": "Dra. Valeria Guzmán Torres",
+        "descripcion": "Especialista en Oncología Integrativa con más de 10 años de experiencia. Enfoque en tratamientos personalizados y atención integral al paciente.",
         "especialidad": 1, // ID de especialidad
         "imagen": "assets/img_professionals/vgt.jpg",
         "obrasSociales": [1, 2, 3, 4],
@@ -23,7 +25,9 @@ const DATOS_PRUEBA_MEDICOS = [
     },
     {
         "id": 2,
+        "matricula": 12346,
         "nombre": "Dr. Marcelo Álvarez Quintana",
+        "descripcion": "Experto en Medicina del Sueño. Diagnóstico y tratamiento de trastornos del sueño con tecnología de última generación.",
         "especialidad": 2, // ID de especialidad
         "imagen": "assets/img_professionals/maq.jpg",
         "obrasSociales": [5, 6, 7, 8],
@@ -171,6 +175,17 @@ async function inicializarDatos(storageKey, jsonPath) {
                                 };
                                 medico.precio = valoresBase[medico.especialidad] || 7000;
                             }
+                        }
+
+                        // Si no tiene matrícula, generar una automáticamente
+                        if (!medico.matricula) {
+                            medico.matricula = 10000 + medico.id;
+                        }
+
+                        // Si no tiene descripción, asignar una por defecto
+                        if (!medico.descripcion) {
+                            const especialidad = obtenerEspecialidadPorId(medico.especialidad);
+                            medico.descripcion = `Profesional especializado en ${especialidad ? especialidad.nombre : 'medicina general'} con amplia experiencia en el área.`;
                         }
                     });
                 }

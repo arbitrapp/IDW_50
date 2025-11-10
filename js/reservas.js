@@ -321,7 +321,7 @@ function actualizarResumenCompleto() {
         <div class="alert alert-info mt-3">
             <small>
                 <i class="bi bi-info-circle me-1"></i>
-                <strong>Importante:</strong> No olvide traer su carnet de ${obraSocial.nombre} el día de la consulta.
+                <strong>Importante:</strong> Deber&aacute; acreditar su afiliaci&oacute;n a ${obraSocial.nombre} el d&iacute;a de la consulta.
             </small>
         </div>
         ` : `

@@ -48,9 +48,12 @@ nav a {
   font-weight: bold;
 }
 
+/* Anulado para que quede igual en todas las paginas fuera de admin. 
+Si estan de acuerdo lo borramos, o lo implementamos en todas por igual. 
 nav a:hover {
   text-decoration: double underline;
 }
+*/
 
 /* MAIN CONTENT */
 

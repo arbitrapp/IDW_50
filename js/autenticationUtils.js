@@ -14,7 +14,7 @@ export function isAuthenticated() {
 export function logout() {
   sessionStorage.removeItem(AUTH_KEYS.ACCESS_TOKEN);
   sessionStorage.removeItem(AUTH_KEYS.USUARIO_ACTUAL);
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 }
 
 // Obtener usuario actual

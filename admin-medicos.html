@@ -54,6 +54,7 @@
                 <tr>
                   <th style="width: 100px">Foto</th>
                   <th>Nombre</th>
+                  <th>Matrícula</th>
                   <th>Especialidad</th>
                   <th>Contacto</th>
                   <th>Obras Sociales</th>
@@ -87,6 +88,19 @@
               <input type="hidden" id="medicoId" />
               <div class="row">
                 <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="matricula" class="form-label">
+                      Matrícula Profesional <span class="text-danger">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="matricula"
+                      min="1"
+                      required
+                    />
+                    <div class="form-text">Número único de matrícula profesional</div>
+                  </div>
                   <div class="mb-3">
                     <label for="nombre" class="form-label"
                       >Nombre completo <span class="text-danger">*</span></label
@@ -151,6 +165,19 @@
                     />
                   </div>
                 </div>
+              </div>
+              <div class="mb-3">
+                <label for="descripcion" class="form-label">
+                  Descripción y Presentación <span class="text-danger">*</span>
+                </label>
+                <textarea
+                  class="form-control"
+                  id="descripcion"
+                  rows="4"
+                  placeholder="Descripción profesional, experiencia, especialidades..."
+                  required
+                ></textarea>
+                <div class="form-text">Esta descripción se mostrará en el catálogo público</div>
               </div>
               <div class="mb-3">
                 <label class="form-label">Obras Sociales</label>

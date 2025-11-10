@@ -101,9 +101,19 @@ function crearCardMedico(medico) {
                         <strong>Especialidad:</strong> ${especialidad ? especialidad.nombre : medico.especialidad}
                     </p>
                     <p class="card-text text-muted mb-2">
+                        <i class="bi bi-id-card me-2"></i>
+                        <strong>Matrícula:</strong> ${medico.matricula || 'N/A'}
+                    </p>
+                    <p class="card-text text-muted mb-2">
                         <i class="bi bi-clock me-2"></i>
                         <strong>Horario:</strong> ${medico.horarioAtencion}
                     </p>
+                    ${medico.descripcion ? `
+                    <p class="card-text text-muted mb-2 small" style="max-height: 60px; overflow: hidden; text-overflow: ellipsis;">
+                        <i class="bi bi-person-badge me-2"></i>
+                        ${medico.descripcion}
+                    </p>
+                    ` : ''}
                     <p class="card-text text-muted mb-3">
                         <i class="bi bi-heart-pulse me-2"></i>
                         <strong>Obras Sociales:</strong> 

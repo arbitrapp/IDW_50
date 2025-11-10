@@ -70,6 +70,7 @@ function cargarMedicos() {
     contenedor.innerHTML = medicos.map(medico => {
         const obrasSocialesMedico = obtenerObrasSocialesPorIds(medico.obrasSociales || []);
         const obrasSocialesNombres = obrasSocialesMedico.map(os => os.nombre).join(', ');
+        const especialidad = obtenerEspecialidadPorId(medico.especialidad);
         
         console.log(`👨‍⚕️ Médico: ${medico.nombre}, Precio: $${medico.precio}`);
         
@@ -87,8 +88,18 @@ function cargarMedicos() {
                                 <h5 class="card-title text-primary mb-1">${medico.nombre}</h5>
                                 <p class="card-text text-muted mb-1">
                                     <i class="bi bi-briefcase me-1"></i>
-                                    ${medico.especialidad || 'Especialidad no especificada'}
+                                    ${especialidad ? especialidad.nombre : 'Especialidad no especificada'}
                                 </p>
+                                <p class="card-text text-muted mb-1">
+                                    <i class="bi bi-id-card me-1"></i>
+                                    <strong>Matrícula:</strong> ${medico.matricula || 'N/A'}
+                                </p>
+                                ${medico.descripcion ? `
+                                <p class="card-text text-muted mb-1 small" style="max-height: 40px; overflow: hidden; text-overflow: ellipsis;">
+                                    <i class="bi bi-person-badge me-1"></i>
+                                    ${medico.descripcion}
+                                </p>
+                                ` : ''}
                                 <p class="card-text text-muted mb-1">
                                     <i class="bi bi-heart-pulse me-1"></i>
                                     <small>${obrasSocialesNombres || 'No especificadas'}</small>
@@ -253,11 +264,14 @@ function actualizarResumenTurnoSeleccionado() {
         minute: '2-digit' 
     });
 
+    const especialidad = obtenerEspecialidadPorId(medicoSeleccionado.especialidad);
+
     const resumenHTML = `
         <div class="col-md-6">
             <strong>Profesional:</strong><br>
             ${medicoSeleccionado.nombre}<br>
-            <small class="text-muted">${medicoSeleccionado.especialidad || 'Especialidad no especificada'}</small>
+            <small class="text-muted">${especialidad ? especialidad.nombre : 'Especialidad no especificada'}</small><br>
+            <small class="text-muted">Matrícula: ${medicoSeleccionado.matricula || 'N/A'}</small>
         </div>
         <div class="col-md-6">
             <strong>Fecha y Hora:</strong><br>
@@ -289,12 +303,15 @@ function actualizarResumenCompleto() {
         minute: '2-digit' 
     });
 
+    const especialidad = obtenerEspecialidadPorId(medicoSeleccionado.especialidad);
+
     const resumenHTML = `
         <div class="row">
             <div class="col-md-6">
                 <strong>Detalles del Turno:</strong><br>
                 <strong>${medicoSeleccionado.nombre}</strong><br>
-                <small class="text-muted">${medicoSeleccionado.especialidad || 'Especialidad no especificada'}</small><br>
+                <small class="text-muted">${especialidad ? especialidad.nombre : 'Especialidad no especificada'}</small><br>
+                <small class="text-muted">Matrícula: ${medicoSeleccionado.matricula || 'N/A'}</small><br>
                 <small class="text-muted">${fecha} - ${hora}</small>
             </div>
             <div class="col-md-6">
@@ -421,6 +438,8 @@ function confirmarReserva() {
     });
     const hora = fechaHora.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
 
+    const especialidad = obtenerEspecialidadPorId(medicoSeleccionado.especialidad);
+
     document.getElementById('mensaje-confirmacion').innerHTML = `
         <div class="text-start">
             <p>Su turno ha sido reservado exitosamente.</p>
@@ -429,6 +448,8 @@ function confirmarReserva() {
                     <h6 class="card-title">Detalles de la Reserva:</h6>
                     <p class="mb-1"><strong>Paciente:</strong> ${nombrePaciente}</p>
                     <p class="mb-1"><strong>Profesional:</strong> ${medicoSeleccionado.nombre}</p>
+                    <p class="mb-1"><strong>Especialidad:</strong> ${especialidad ? especialidad.nombre : 'No especificada'}</p>
+                    <p class="mb-1"><strong>Matrícula:</strong> ${medicoSeleccionado.matricula || 'N/A'}</p>
                     <p class="mb-1"><strong>Fecha y Hora:</strong> ${fecha} a las ${hora}</p>
                     <p class="mb-1"><strong>Obra Social:</strong> ${obraSocial ? obraSocial.nombre : 'Particular'}</p>
                     <p class="mb-0"><strong>Valor a pagar:</strong> $${valorFinal.toFixed(2)}</p>

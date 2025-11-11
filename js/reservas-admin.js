@@ -6,7 +6,8 @@ import {
     obtenerEspecialidadPorId,
     obtenerObraSocialPorId,
     obtenerNombreObraSocialPorId,
-    obtenerNombreEspecialidadPorId
+    obtenerNombreEspecialidadPorId,
+    obtenerNombreCompletoMedico
 } from "./storage.js";
 import { isAuthenticated, logout } from "./autenticationUtils.js";
 
@@ -68,7 +69,7 @@ function renderizarTablaReservas() {
                         <small class="text-muted">${reserva.paciente.email}</small>
                     </td>
                     <td>
-                        ${medico ? medico.nombre : 'Médico no encontrado'}
+                        ${medico ? obtenerNombreCompletoMedico(medico) : 'Médico no encontrado'}
                     </td>
                     <td>
                         ${especialidad ? especialidad.nombre : 'Especialidad no especificada'}
@@ -136,7 +137,7 @@ function verDetalleReserva(id) {
             </div>
             <div class="col-md-6">
                 <h6 class="text-primary">Información del Turno</h6>
-                <p><strong>Médico:</strong> ${medico ? medico.nombre : 'No encontrado'}</p>
+                <p><strong>Médico:</strong> ${medico ? obtenerNombreCompletoMedico(medico) : 'No encontrado'}</p>
                 <p><strong>Especialidad:</strong> ${especialidad ? especialidad.nombre : 'No especificada'}</p>
                 <p><strong>Fecha:</strong> ${fechaTurno ? fechaTurno.toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A'}</p>
                 <p><strong>Hora:</strong> ${fechaTurno ? fechaTurno.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }) : 'N/A'}</p>
@@ -200,7 +201,7 @@ function exportarReservas() {
             `"${reserva.paciente.fechaNacimiento || 'N/A'}"`,
             `"${reserva.paciente.genero || 'N/A'}"`,
             `"${reserva.paciente.direccion || 'N/A'}"`,
-            `"${medico ? medico.nombre : 'No encontrado'}"`,
+            `"${medico ? obtenerNombreCompletoMedico(medico) : 'No encontrado'}"`,
             `"${especialidad ? especialidad.nombre : 'No especificada'}"`,
             fechaTurno ? fechaTurno.toLocaleDateString('es-AR') : 'N/A',
             fechaTurno ? fechaTurno.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }) : 'N/A',

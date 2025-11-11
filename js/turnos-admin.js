@@ -6,7 +6,8 @@ import {
     generarIdTurno,
     obtenerMedicos,
     obtenerMedicoPorId,
-    obtenerEspecialidadPorId
+    obtenerEspecialidadPorId,
+    obtenerNombreCompletoMedico
 } from "./storage.js";
 import { isAuthenticated, logout } from "./autenticationUtils.js";
 
@@ -50,7 +51,7 @@ function cargarSelectMedicos() {
     medicos.forEach(medico => {
         const option = document.createElement("option");
         option.value = medico.id;
-        option.textContent = medico.nombre;
+        option.textContent = obtenerNombreCompletoMedico(medico);
         select.appendChild(option);
     });
 }
@@ -88,7 +89,7 @@ function renderizarTablaTurnos() {
             return `
                 <tr>
                     <td>
-                        <strong>${medico ? medico.nombre : 'Médico no encontrado'}</strong>
+                        <strong>${medico ? obtenerNombreCompletoMedico(medico) : 'Médico no encontrado'}</strong>
                     </td>
                     <td>
                         <strong>${fecha}</strong><br>
@@ -227,7 +228,7 @@ function eliminarTurno(id) {
     const fecha = fechaHora.toLocaleDateString('es-AR');
     const hora = fechaHora.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
 
-    if (confirm(`¿Estás seguro de que quieres eliminar el turno de ${medico ? medico.nombre : 'médico desconocido'} del ${fecha} a las ${hora}?`)) {
+    if (confirm(`¿Estás seguro de que quieres eliminar el turno de ${medico ? obtenerNombreCompletoMedico(medico) : 'médico desconocido'} del ${fecha} a las ${hora}?`)) {
         turnos = turnos.filter((t) => t.id !== id);
         guardarTurnos(turnos);
         cargarDatos();

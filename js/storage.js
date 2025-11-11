@@ -13,26 +13,24 @@ const DATOS_PRUEBA_MEDICOS = [
     {
         "id": 1,
         "matricula": 12345,
-        "nombre": "Dra. Valeria Guzmán Torres",
+        "apellido": "Guzmán Torres",
+        "nombre": "Valeria",
         "descripcion": "Especialista en Oncología Integrativa con más de 10 años de experiencia. Enfoque en tratamientos personalizados y atención integral al paciente.",
-        "especialidad": 1, // ID de especialidad
+        "especialidad": 1,
         "imagen": "assets/img_professionals/vgt.jpg",
         "obrasSociales": [1, 2, 3, 4],
-        "email": "vguzman@galeno.com",
-        "telefono": "+54 11 1234-5678",
         "horarioAtencion": "Lunes a Viernes 8:00-16:00",
         "precio": 8500
     },
     {
         "id": 2,
         "matricula": 12346,
-        "nombre": "Dr. Marcelo Álvarez Quintana",
+        "apellido": "Álvarez Quintana",
+        "nombre": "Marcelo",
         "descripcion": "Experto en Medicina del Sueño. Diagnóstico y tratamiento de trastornos del sueño con tecnología de última generación.",
-        "especialidad": 2, // ID de especialidad
+        "especialidad": 2,
         "imagen": "assets/img_professionals/maq.jpg",
         "obrasSociales": [5, 6, 7, 8],
-        "email": "malvarez@galeno.com",
-        "telefono": "+54 11 1234-5679",
         "horarioAtencion": "Lunes a Jueves 9:00-17:00",
         "precio": 7800
     }
@@ -149,6 +147,18 @@ async function inicializarDatos(storageKey, jsonPath) {
                 // Para médicos, convertir especialidad de string a ID y agregar precio
                 if (storageKey === STORAGE_KEYS.MEDICOS) {
                     datosArray.forEach(medico => {
+                        // Si el médico tiene nombre completo, separar en apellido y nombre
+                        if (medico.nombre && !medico.apellido) {
+                            const partes = medico.nombre.split(' ');
+                            if (partes.length >= 2) {
+                                medico.apellido = partes.slice(0, -1).join(' ');
+                                medico.nombre = partes[partes.length - 1];
+                            } else {
+                                medico.apellido = medico.nombre;
+                                medico.nombre = '';
+                            }
+                        }
+                        
                         if (typeof medico.especialidad === 'string') {
                             const especialidadEncontrada = DATOS_PRUEBA_ESPECIALIDADES.find(esp => 
                                 esp.nombre.toLowerCase().includes(medico.especialidad.toLowerCase()) ||
@@ -247,7 +257,7 @@ function cargarDatosDePrueba() {
 export function obtenerMedicos() {
     const medicos = JSON.parse(localStorage.getItem(STORAGE_KEYS.MEDICOS) || '[]');
     console.log(`📋 Obteniendo médicos: ${medicos.length} encontrados`);
-    return medicos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    return medicos.sort((a, b) => a.apellido.localeCompare(b.apellido));
 }
 
 export function guardarMedicos(medicos) {
@@ -262,6 +272,11 @@ export function obtenerMedicoPorId(id) {
 export function generarIdMedico() {
     const medicos = obtenerMedicos();
     return medicos.length > 0 ? Math.max(...medicos.map(m => m.id)) + 1 : 1;
+}
+
+// Función auxiliar para obtener nombre completo
+export function obtenerNombreCompletoMedico(medico) {
+    return `${medico.apellido}, ${medico.nombre}`;
 }
 
 // ==================== FUNCIONES PARA OBRAS SOCIALES ====================

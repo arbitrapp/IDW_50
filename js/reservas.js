@@ -410,7 +410,7 @@ function confirmarReserva() {
         },
         medicoId: medicoSeleccionado.id,
         turnoId: turnoSeleccionado.id,
-        especialidad: medicoSeleccionado.especialidad,
+        especialidadId: medicoSeleccionado.especialidad,
         obraSocialId: obraSocialId,
         valorConsultaOriginal: medicoSeleccionado.precio,
         porcentajeDescuento: porcentajeDescuento,

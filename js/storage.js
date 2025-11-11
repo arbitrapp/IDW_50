@@ -257,7 +257,12 @@ function cargarDatosDePrueba() {
 export function obtenerMedicos() {
     const medicos = JSON.parse(localStorage.getItem(STORAGE_KEYS.MEDICOS) || '[]');
     console.log(`📋 Obteniendo médicos: ${medicos.length} encontrados`);
-    return medicos.sort((a, b) => a.apellido.localeCompare(b.apellido));
+    return medicos.sort((a, b) => {
+        // Ordenar por apellido primero, luego por nombre
+        const comparacionApellido = a.apellido.localeCompare(b.apellido);
+        if (comparacionApellido !== 0) return comparacionApellido;
+        return a.nombre.localeCompare(b.nombre);
+    });
 }
 
 export function guardarMedicos(medicos) {
@@ -276,6 +281,7 @@ export function generarIdMedico() {
 
 // Función auxiliar para obtener nombre completo
 export function obtenerNombreCompletoMedico(medico) {
+    if (!medico) return 'Médico no encontrado';
     return `${medico.apellido}, ${medico.nombre}`;
 }
 

@@ -231,6 +231,44 @@
     </section>
     <!--Fin de Servicios ofrecidos -->
   </main>
+
+  <!-- Botón flotante para navegación rápida -->
+  <div class="position-fixed" style="bottom: 20px; right: 20px; z-index: 1030;">
+    <!-- Menú desplegable -->
+    <div id="floatingMenu" class="card shadow-lg mb-2 d-none" style="min-width: 200px;">
+      <div class="card-body p-3">
+        <h6 class="card-title fw-bold text-primary mb-3 text-center">Navegación Rápida</h6>
+        <div class="d-grid gap-2">
+          <a href="#" class="btn btn-outline-primary btn-sm text-start" onclick="scrollToTop()">
+            <i class="bi bi-house me-2"></i>Inicio
+          </a>
+          <a href="institucional.html" class="btn btn-outline-primary btn-sm text-start">
+            <i class="bi bi-people me-2"></i>Institucional
+          </a>
+          <a href="#NuestrosServicios" class="btn btn-outline-primary btn-sm text-start" onclick="toggleMenu()">
+            <i class="bi bi-briefcase me-2"></i>Servicios
+          </a>
+          <a href="#NuestrosProfesionales" class="btn btn-outline-primary btn-sm text-start" onclick="toggleMenu()">
+            <i class="bi bi-person-badge me-2"></i>Profesionales
+          </a>
+          <a href="reservas.html" class="btn btn-outline-primary btn-sm text-start">
+            <i class="bi bi-calendar-check me-2"></i>Reservar Turno
+          </a>
+          <a href="contacto.html" class="btn btn-outline-success btn-sm text-start">
+            <i class="bi bi-envelope me-2"></i>Contacto
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Botón para toggle del menú -->
+<button id="menuToggle" class="btn btn-primary rounded-circle shadow" 
+        style="width: 60px; height: 60px;" 
+        onclick="event.stopPropagation(); toggleMenu()">
+  <i class="bi bi-list fs-5"></i>
+</button>
+  </div>
+
   <footer class="text-center bg-primary text-light m-0 p-0">
     &copy;2025 Centro Médico Galeno - Todos los derechos reservados.
   </footer>

@@ -336,5 +336,39 @@ function obtenerEnlaceObraSocial(nombreObraSocial) {
     return enlaces[nombreObraSocial] || '#';
 }
 
-// Hacer función global para la paginación
+// FUNCIONALIDAD DEL MENÚ FLOTANTE - AGREGADO AL FINAL SIN MODIFICAR LO EXISTENTE
+function toggleMenu() {
+    const menu = document.getElementById('floatingMenu');
+    const toggleButton = document.getElementById('menuToggle');
+    
+    if (menu.classList.contains('d-none')) {
+        menu.classList.remove('d-none');
+        toggleButton.innerHTML = '<i class="bi bi-x fs-5"></i>';
+    } else {
+        menu.classList.add('d-none');
+        toggleButton.innerHTML = '<i class="bi bi-list fs-5"></i>';
+    }
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    toggleMenu(); // Cerrar el menú después de hacer clic
+}
+
+// Cerrar el menú si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('floatingMenu');
+    const toggleButton = document.getElementById('menuToggle');
+    
+    if (!menu.classList.contains('d-none') && 
+        !menu.contains(event.target) && 
+        !toggleButton.contains(event.target)) {
+        menu.classList.add('d-none');
+        toggleButton.innerHTML = '<i class="bi bi-list fs-5"></i>';
+    }
+});
+
+// Hacer funciones globales para los onclick
 window.cambiarPagina = cambiarPagina;
+window.toggleMenu = toggleMenu;
+window.scrollToTop = scrollToTop;

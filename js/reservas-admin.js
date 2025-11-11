@@ -130,6 +130,9 @@ function verDetalleReserva(id) {
                 <p><strong>Documento:</strong> ${reserva.paciente.documento}</p>
                 <p><strong>Email:</strong> ${reserva.paciente.email}</p>
                 <p><strong>Teléfono:</strong> ${reserva.paciente.telefono}</p>
+                <p><strong>Fecha Nacimiento:</strong> ${reserva.paciente.fechaNacimiento || 'No especificada'}</p>
+                <p><strong>Género:</strong> ${reserva.paciente.genero || 'No especificado'}</p>
+                ${reserva.paciente.direccion ? `<p><strong>Dirección:</strong> ${reserva.paciente.direccion}</p>` : ''}
             </div>
             <div class="col-md-6">
                 <h6 class="text-primary">Información del Turno</h6>
@@ -142,13 +145,21 @@ function verDetalleReserva(id) {
         <hr>
         <div class="row">
             <div class="col-md-6">
-                <h6 class="text-primary">Información de Pago</h6>
+                <h6 class="text-primary">Datos de Salud</h6>
                 <p><strong>Obra Social:</strong> ${obraSocial ? obraSocial.nombre : 'Particular'}</p>
+                ${reserva.paciente.numeroAfiliado ? `<p><strong>Número de Afiliado:</strong> ${reserva.paciente.numeroAfiliado}</p>` : ''}
+                ${reserva.paciente.motivoConsulta ? `<p><strong>Motivo de Consulta:</strong> ${reserva.paciente.motivoConsulta}</p>` : ''}
+            </div>
+            <div class="col-md-6">
+                <h6 class="text-primary">Información de Pago</h6>
                 <p><strong>Descuento aplicado:</strong> ${reserva.porcentajeDescuento}%</p>
                 <p><strong>Valor original:</strong> $${reserva.valorConsultaOriginal}</p>
                 <p><strong>Valor final:</strong> <span class="fs-5 fw-bold text-success">$${reserva.valorFinal.toFixed(2)}</span></p>
             </div>
-            <div class="col-md-6">
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
                 <h6 class="text-primary">Información de la Reserva</h6>
                 <p><strong>ID de reserva:</strong> #${reserva.id}</p>
                 <p><strong>Estado:</strong> <span class="badge bg-success">${reserva.estado}</span></p>
@@ -169,7 +180,7 @@ function exportarReservas() {
         return;
     }
 
-    let csvContent = "ID;Paciente;Documento;Email;Teléfono;Médico;Especialidad;Fecha Turno;Hora Turno;Obra Social;Descuento %;Valor Original;Valor Final;Estado;Fecha Reserva\n";
+    let csvContent = "ID;Paciente;Documento;Email;Teléfono;Fecha Nacimiento;Género;Dirección;Médico;Especialidad;Fecha Turno;Hora Turno;Obra Social;Número Afiliado;Motivo Consulta;Descuento %;Valor Original;Valor Final;Estado;Fecha Reserva\n";
     
     reservas.forEach(reserva => {
         const medico = obtenerMedicoPorId(reserva.medicoId);
@@ -186,11 +197,16 @@ function exportarReservas() {
             `"${reserva.paciente.documento}"`,
             `"${reserva.paciente.email}"`,
             `"${reserva.paciente.telefono}"`,
+            `"${reserva.paciente.fechaNacimiento || 'N/A'}"`,
+            `"${reserva.paciente.genero || 'N/A'}"`,
+            `"${reserva.paciente.direccion || 'N/A'}"`,
             `"${medico ? medico.nombre : 'No encontrado'}"`,
             `"${especialidad ? especialidad.nombre : 'No especificada'}"`,
             fechaTurno ? fechaTurno.toLocaleDateString('es-AR') : 'N/A',
             fechaTurno ? fechaTurno.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }) : 'N/A',
             obraSocial ? `"${obraSocial.nombre}"` : 'Particular',
+            `"${reserva.paciente.numeroAfiliado || 'N/A'}"`,
+            `"${reserva.paciente.motivoConsulta || 'N/A'}"`,
             reserva.porcentajeDescuento,
             reserva.valorConsultaOriginal,
             reserva.valorFinal.toFixed(2),

@@ -457,6 +457,8 @@ function confirmarReserva() {
                     <p class="mb-1"><strong>Matrícula:</strong> ${medicoSeleccionado.matricula || 'N/A'}</p>
                     <p class="mb-1"><strong>Fecha y Hora:</strong> ${fecha} a las ${hora}</p>
                     <p class="mb-1"><strong>Obra Social:</strong> ${obraSocial ? obraSocial.nombre : 'Particular'}</p>
+                    ${numeroAfiliado ? `<p class="mb-1"><strong>Número de Afiliado:</strong> ${numeroAfiliado}</p>` : ''}
+                    ${motivoConsulta ? `<p class="mb-1"><strong>Motivo de Consulta:</strong> ${motivoConsulta}</p>` : ''}
                     <p class="mb-0"><strong>Valor a pagar:</strong> $${valorFinal.toFixed(2)}</p>
                 </div>
             </div>

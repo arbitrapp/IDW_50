@@ -14,7 +14,8 @@ import {
     obtenerObrasSocialesPorIds,
     guardarTurnos,
     obtenerTurnos,
-    inicializarStorage
+    inicializarStorage,
+    obtenerNombreCompletoMedico
 } from './storage.js';
 
 // Variables globales
@@ -71,8 +72,9 @@ function cargarMedicos() {
         const obrasSocialesMedico = obtenerObrasSocialesPorIds(medico.obrasSociales || []);
         const obrasSocialesNombres = obrasSocialesMedico.map(os => os.nombre).join(', ');
         const especialidad = obtenerEspecialidadPorId(medico.especialidad);
+        const nombreCompleto = obtenerNombreCompletoMedico(medico);
         
-        console.log(`👨‍⚕️ Médico: ${medico.nombre}, Precio: $${medico.precio}`);
+        console.log(`👨‍⚕️ Médico: ${nombreCompleto}, Precio: $${medico.precio}`);
         
         return `
             <div class="col-12">
@@ -80,12 +82,12 @@ function cargarMedicos() {
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-md-2 text-center">
-                                <img src="${medico.imagen}" class="rounded" alt="${medico.nombre}" 
+                                <img src="${medico.imagen}" class="rounded" alt="${nombreCompleto}" 
                                      style="width: 80px; height: 80px; object-fit: cover;"
                                      onerror="this.src='https://via.placeholder.com/80x80?text=Imagen'">
                             </div>
                             <div class="col-md-6">
-                                <h5 class="card-title text-primary mb-1">${medico.nombre}</h5>
+                                <h5 class="card-title text-primary mb-1">${nombreCompleto}</h5>
                                 <p class="card-text text-muted mb-1">
                                     <i class="bi bi-briefcase me-1"></i>
                                     ${especialidad ? especialidad.nombre : 'Especialidad no especificada'}
@@ -167,7 +169,7 @@ function seleccionarMedico(medicoId) {
         return;
     }
 
-    console.log(`✅ Médico seleccionado: ${medicoSeleccionado.nombre}`);
+    console.log(`✅ Médico seleccionado: ${obtenerNombreCompletoMedico(medicoSeleccionado)}`);
     document.getElementById('medico-seleccionado').value = medicoId;
     cargarTurnosDisponibles(medicoId);
     mostrarPaso(2);
@@ -265,11 +267,12 @@ function actualizarResumenTurnoSeleccionado() {
     });
 
     const especialidad = obtenerEspecialidadPorId(medicoSeleccionado.especialidad);
+    const nombreCompleto = obtenerNombreCompletoMedico(medicoSeleccionado);
 
     const resumenHTML = `
         <div class="col-md-6">
             <strong>Profesional:</strong><br>
-            ${medicoSeleccionado.nombre}<br>
+            ${nombreCompleto}<br>
             <small class="text-muted">${especialidad ? especialidad.nombre : 'Especialidad no especificada'}</small><br>
             <small class="text-muted">Matrícula: ${medicoSeleccionado.matricula || 'N/A'}</small>
         </div>
@@ -304,12 +307,13 @@ function actualizarResumenCompleto() {
     });
 
     const especialidad = obtenerEspecialidadPorId(medicoSeleccionado.especialidad);
+    const nombreCompleto = obtenerNombreCompletoMedico(medicoSeleccionado);
 
     const resumenHTML = `
         <div class="row">
             <div class="col-md-6">
                 <strong>Detalles del Turno:</strong><br>
-                <strong>${medicoSeleccionado.nombre}</strong><br>
+                <strong>${nombreCompleto}</strong><br>
                 <small class="text-muted">${especialidad ? especialidad.nombre : 'Especialidad no especificada'}</small><br>
                 <small class="text-muted">Matrícula: ${medicoSeleccionado.matricula || 'N/A'}</small><br>
                 <small class="text-muted">${fecha} - ${hora}</small>
@@ -439,6 +443,7 @@ function confirmarReserva() {
     const hora = fechaHora.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
 
     const especialidad = obtenerEspecialidadPorId(medicoSeleccionado.especialidad);
+    const nombreCompleto = obtenerNombreCompletoMedico(medicoSeleccionado);
 
     document.getElementById('mensaje-confirmacion').innerHTML = `
         <div class="text-start">
@@ -447,7 +452,7 @@ function confirmarReserva() {
                 <div class="card-body">
                     <h6 class="card-title">Detalles de la Reserva:</h6>
                     <p class="mb-1"><strong>Paciente:</strong> ${nombrePaciente}</p>
-                    <p class="mb-1"><strong>Profesional:</strong> ${medicoSeleccionado.nombre}</p>
+                    <p class="mb-1"><strong>Profesional:</strong> ${nombreCompleto}</p>
                     <p class="mb-1"><strong>Especialidad:</strong> ${especialidad ? especialidad.nombre : 'No especificada'}</p>
                     <p class="mb-1"><strong>Matrícula:</strong> ${medicoSeleccionado.matricula || 'N/A'}</p>
                     <p class="mb-1"><strong>Fecha y Hora:</strong> ${fecha} a las ${hora}</p>

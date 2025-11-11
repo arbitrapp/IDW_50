@@ -7,7 +7,8 @@ import {
   obtenerObrasSociales, 
   obtenerObrasSocialesPorIds,
   obtenerEspecialidades,
-  obtenerEspecialidadPorId
+  obtenerEspecialidadPorId,
+  obtenerNombreCompletoMedico
 } from "./storage.js";
 import { isAuthenticated, logout } from "./autenticationUtils.js";
 
@@ -54,7 +55,7 @@ function renderizarTablaMedicos() {
   if (medicos.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="8" class="text-center py-4">
+        <td colspan="11" class="text-center py-4">
           <div class="text-muted">
             <i class="bi bi-person-x display-4 d-block mb-2"></i>
             No hay médicos registrados
@@ -82,58 +83,42 @@ function renderizarTablaMedicos() {
       return `
         <tr>
           <td class="align-middle">
+            <span class="badge bg-secondary">${medico.id}</span>
+          </td>
+          <td class="align-middle">
             ${
               medico.imagen
-                ? `<img src="${medico.imagen}" alt="${medico.nombre}" class="rounded" style="width: 60px; height: 60px; object-fit: cover;">`
+                ? `<img src="${medico.imagen}" alt="${obtenerNombreCompletoMedico(medico)}" class="rounded" style="width: 60px; height: 60px; object-fit: cover;">`
                 : `<div class="bg-secondary rounded d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
                     <i class="bi bi-person text-light"></i>
                   </div>`
             }
           </td>
           <td class="align-middle">
-            <strong class="d-block">${medico.nombre}</strong>
-            <small class="text-muted">${nombreEspecialidad}</small>
-            ${medico.descripcion ? `<small class="text-muted d-block mt-1" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${medico.descripcion}</small>` : ''}
+            <span class="badge bg-primary">${medico.matricula || 'N/A'}</span>
           </td>
           <td class="align-middle">
-            <span class="badge bg-primary">${medico.matricula || 'N/A'}</span>
+            <strong class="d-block">${medico.apellido}</strong>
+          </td>
+          <td class="align-middle">
+            <strong class="d-block">${medico.nombre}</strong>
           </td>
           <td class="align-middle">
             ${nombreEspecialidad}
           </td>
           <td class="align-middle">
-            <div class="d-flex flex-column gap-1">
-              ${
-                medico.email
-                  ? `<div class="d-flex align-items-center">
-                      <i class="bi bi-envelope text-primary me-2"></i>
-                      <small>${medico.email}</small>
-                    </div>`
-                  : ""
-              }
-              ${
-                medico.telefono
-                  ? `<div class="d-flex align-items-center">
-                      <i class="bi bi-telephone text-success me-2"></i>
-                      <small>${medico.telefono}</small>
-                    </div>`
-                  : ""
-              }
-              ${
-                medico.horarioAtencion
-                  ? `<div class="d-flex align-items-center">
-                      <i class="bi bi-clock text-warning me-2"></i>
-                      <small>${medico.horarioAtencion}</small>
-                    </div>`
-                  : ""
-              }
-            </div>
+            <small class="text-muted" style="max-width: 200px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+              ${medico.descripcion || 'Sin descripción'}
+            </small>
+          </td>
+          <td class="align-middle">
+            <small class="text-muted">${medico.horarioAtencion || 'No especificado'}</small>
           </td>
           <td class="align-middle">
             <small class="text-muted">${obrasSocialesNombres || "No asignadas"}</small>
           </td>
           <td class="align-middle">
-            <strong>$${medico.precio || 0}</strong>
+            <strong>$${(medico.precio || 0).toFixed(2)}</strong>
           </td>
           <td class="align-middle">
             <div class="btn-group btn-group-sm">
@@ -218,12 +203,11 @@ function editarMedico(id) {
   document.getElementById("modalTitulo").textContent = "Editar Médico";
   document.getElementById("medicoId").value = medicoEditando.id;
   document.getElementById("matricula").value = medicoEditando.matricula || "";
+  document.getElementById("apellido").value = medicoEditando.apellido || "";
   document.getElementById("nombre").value = medicoEditando.nombre || "";
   document.getElementById("especialidad").value = medicoEditando.especialidad || "";
   document.getElementById("precio").value = medicoEditando.precio || "";
   document.getElementById("imagen").value = medicoEditando.imagen || "";
-  document.getElementById("email").value = medicoEditando.email || "";
-  document.getElementById("telefono").value = medicoEditando.telefono || "";
   document.getElementById("horarioAtencion").value = medicoEditando.horarioAtencion || "";
   document.getElementById("descripcion").value = medicoEditando.descripcion || "";
 
@@ -245,18 +229,22 @@ function guardarMedico() {
   // Obtener valores del formulario
   const id = document.getElementById("medicoId").value;
   const matricula = parseInt(document.getElementById("matricula").value);
+  const apellido = document.getElementById("apellido").value.trim();
   const nombre = document.getElementById("nombre").value.trim();
   const especialidad = document.getElementById("especialidad").value;
   const precio = parseFloat(document.getElementById("precio").value);
   const imagen = document.getElementById("imagen").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const telefono = document.getElementById("telefono").value.trim();
   const horarioAtencion = document.getElementById("horarioAtencion").value.trim();
   const descripcion = document.getElementById("descripcion").value.trim();
 
   // Validaciones básicas
   if (!matricula || isNaN(matricula) || matricula <= 0) {
     alert("La matrícula profesional es obligatoria y debe ser un número válido");
+    return;
+  }
+
+  if (!apellido) {
+    alert("El apellido es obligatorio");
     return;
   }
 
@@ -283,7 +271,7 @@ function guardarMedico() {
   // Verificar si la matrícula ya existe (excepto para el médico que se está editando)
   const matriculaExistente = medicos.find(m => m.matricula === matricula && m.id !== parseInt(id));
   if (matriculaExistente) {
-    alert(`La matrícula ${matricula} ya está asignada al médico: ${matriculaExistente.nombre}`);
+    alert(`La matrícula ${matricula} ya está asignada al médico: ${obtenerNombreCompletoMedico(matriculaExistente)}`);
     return;
   }
 
@@ -302,12 +290,11 @@ function guardarMedico() {
     medico = {
       ...medicoEditando,
       matricula,
+      apellido,
       nombre,
       especialidad: parseInt(especialidad),
       precio,
       imagen: imagen || null,
-      email: email || null,
-      telefono: telefono || null,
       horarioAtencion: horarioAtencion || null,
       descripcion,
       obrasSociales: obrasSocialesSeleccionadas,
@@ -323,12 +310,11 @@ function guardarMedico() {
     medico = {
       id: generarIdMedico(),
       matricula,
+      apellido,
       nombre,
       especialidad: parseInt(especialidad),
       precio,
       imagen: imagen || null,
-      email: email || null,
-      telefono: telefono || null,
       horarioAtencion: horarioAtencion || null,
       descripcion,
       obrasSociales: obrasSocialesSeleccionadas,
@@ -362,7 +348,7 @@ function eliminarMedico(id) {
     return;
   }
 
-  if (confirm(`¿Estás seguro de que quieres eliminar al médico "${medico.nombre}"?`)) {
+  if (confirm(`¿Estás seguro de que quieres eliminar al médico "${obtenerNombreCompletoMedico(medico)}"?`)) {
     medicos = medicos.filter((m) => m.id !== id);
     guardarMedicos(medicos);
     cargarDatos();

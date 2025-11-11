@@ -2,7 +2,8 @@ import {
     obtenerMedicos, 
     obtenerObrasSocialesPorIds,
     inicializarStorage,
-    obtenerEspecialidadPorId
+    obtenerEspecialidadPorId,
+    obtenerNombreCompletoMedico
 } from './storage.js';
 //PARTE DE CRISTIAN - INICIALIZACIÓN Y FUNCIONALIDAD GENERAL
 // Variables globales para paginación
@@ -79,6 +80,20 @@ function cargarProfesionales() {
     console.log('✅ Profesionales cargados correctamente');
 }
 
+// Función para determinar el título (Dr./Dra.) basado en el nombre
+function obtenerTituloMedico(nombre) {
+    // Lista de nombres típicamente femeninos (puedes expandir esta lista)
+    const nombresFemeninos = ['valeria', 'camila', 'natalia', 'maria', 'ana', 'lucia', 'sofia', 'carla', 'laura', 'andrea', 'patricia', 'claudia'];
+    
+    const primerNombre = nombre.toLowerCase().split(' ')[0];
+    
+    if (nombresFemeninos.includes(primerNombre)) {
+        return 'Dra.';
+    } else {
+        return 'Dr.';
+    }
+}
+
 function crearCardMedico(medico) {
     console.log(`Creando card para: ${medico.nombre}`);
     
@@ -87,15 +102,17 @@ function crearCardMedico(medico) {
     const obrasSocialesActivas = obrasSociales.filter(os => os.activo !== false);
     const obrasSocialesNombres = obrasSocialesActivas.map(os => os.nombre).join(', ');
     const especialidad = obtenerEspecialidadPorId(medico.especialidad);
+    const nombreCompleto = obtenerNombreCompletoMedico(medico);
+    const titulo = obtenerTituloMedico(medico.nombre);
     
     return `
         <div class="col-12 col-sm-6 col-lg-3">
             <div class="card h-100 shadow border-0" style="border-radius: 15px; overflow: hidden;">
-                <img src="${medico.imagen}" class="card-img-top" alt="${medico.nombre}" 
+                <img src="${medico.imagen}" class="card-img-top" alt="${nombreCompleto}" 
                      style="height: 250px; object-fit: cover;"
                      onerror="this.src='https://via.placeholder.com/300x250?text=Imagen+no+disponible'">
                 <div class="card-body d-flex flex-column p-4">
-                    <h5 class="card-title text-primary fw-bold">${medico.nombre}</h5>
+                    <h5 class="card-title text-primary fw-bold">${titulo} ${nombreCompleto}</h5>
                     <p class="card-text text-muted mb-2">
                         <i class="bi bi-briefcase me-2"></i>
                         <strong>Especialidad:</strong> ${especialidad ? especialidad.nombre : medico.especialidad}

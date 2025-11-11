@@ -44,7 +44,7 @@ function renderizarTablaObrasSociales() {
   if (obrasSociales.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="5" class="text-center py-4">
+        <td colspan="6" class="text-center py-4">
           <div class="text-muted">
             <i class="bi bi-building display-4 d-block mb-2"></i>
             No hay obras sociales registradas
@@ -61,7 +61,10 @@ function renderizarTablaObrasSociales() {
     .map((os) => {
       return `
         <tr>
-          <td>
+          <td class="align-middle">
+            <span class="badge bg-secondary">${os.id}</span>
+          </td>
+          <td class="align-middle">
             ${
               os.logo
                 ? `<img src="${os.logo}" alt="${os.nombre}" class="os-logo" style="width: 60px; height: 60px; object-fit: contain;">`
@@ -70,20 +73,20 @@ function renderizarTablaObrasSociales() {
                   </div>`
             }
           </td>
-          <td>
+          <td class="align-middle">
             <strong>${os.nombre}</strong>
           </td>
-          <td>
+          <td class="align-middle">
             <span class="badge bg-info text-dark">
               ${os.porcentaje || 0}% descuento
             </span>
           </td>
-          <td>
+          <td class="align-middle">
             <span class="badge ${os.activo ? "bg-success" : "bg-secondary"}">
               ${os.activo ? "Activa" : "Inactiva"}
             </span>
           </td>
-          <td>
+          <td class="align-middle">
             <div class="btn-group btn-group-sm">
               <button class="btn btn-outline-primary" onclick="editarObraSocial(${os.id})" title="Editar">
                 <i class="bi bi-pencil"></i>

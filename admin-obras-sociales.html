@@ -52,6 +52,7 @@
             <table class="table table-striped table-hover">
               <thead class="table-dark">
                 <tr>
+                  <th style="width: 60px">ID</th>
                   <th style="width: 80px">Logo</th>
                   <th>Nombre</th>
                   <th>Porcentaje</th>
@@ -116,13 +117,14 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="logoOS" class="form-label">URL del Logo</label>
-                <input
-                  type="text"
+                <label for="logoOS" class="form-label">Logo (Base64)</label>
+                <textarea
                   class="form-control"
                   id="logoOS"
-                  placeholder="assets/img_os/ejemplo.png"
-                />
+                  rows="4"
+                  placeholder="data:image/png;base64,..."
+                ></textarea>
+                <div class="form-text">Cadena Base64 del logo de la obra social</div>
               </div>
               <div class="form-check form-switch mb-3">
                 <input
